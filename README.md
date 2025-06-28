@@ -42,6 +42,15 @@ API-As-Service is available only in individual pricing mode. Contact me directly
 
 Do not forget to say hello!
 
+Cooling process calculation showcase:
+[![logo-sns.png](assets/images/animated/cooling.gif)](https://energyflowx.com/hvac-processes/cooling)
+
+Multiple air stream mixing process showcase:
+[![logo-sns.png](assets/images/animated/mixing.gif)](https://energyflowx.com/hvac-processes/mixing)
+
+Humid air thermophysical properties calculation showcase:
+[![logo-sns.png](assets/images/animated/humid_air.gif)](https://energyflowx.com/fluid-properties/humid-air)
+
 **NO AI ZONE**. <br>
 All calculations use fine crafted algorithms based on existing scientific formulas and equations, implemented from scratch all by myself.
 I love AI, but this is not a right project for using LLMs.
