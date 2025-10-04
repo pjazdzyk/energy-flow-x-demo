@@ -4,7 +4,7 @@ Introducing <strong> Energy Flow X</strong>, an advanced web application for eng
 
 | PROJECT LOGO (Copyright pending)                                       | URL's:                                                                                                           |
 |------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| [![logo-sns.png](assets/images/logo-efx.png)](https://energyflowx.com) | ⇒ [Go to EFX Website](https://energyflowx.com) ⇐ <br><br> ⇒ [Go to EFX Demo API](https://demo.energyflowx.com) ⇐ |
+| [<img src="assets/images/efx-og-default.png" alt="logo-sns.png" style="width:500px;">](https://energyflowx.com) | ⇒ [Go to EFX Website](https://energyflowx.com) ⇐ <br><br> ⇒ [Go to EFX Demo API](https://demo.energyflowx.com) ⇐ |
 
 EnergyFlowX integrates the following of my HVAC engineering libraries:
 - [HVAC | Engine](https://github.com/pjazdzyk/hvac-engine) - The physics of air with water vapor content including thermodynamic processes,
