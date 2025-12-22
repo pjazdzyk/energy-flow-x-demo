@@ -51,6 +51,9 @@ Multiple air stream mixing process showcase:
 Humid air thermophysical properties calculation showcase:
 [![logo-sns.png](assets/images/animated/humid_air.gif)](https://energyflowx.com/fluid-properties/humid-air)
 
+DuctX - comprehensive ventilation duct sizing calculator:
+[![logo-sns.png](assets/images/animated/ductXdemo.gif)](https://energyflowx.com/hydraulics/duct-sizing-calculator)
+
 **NO AI ZONE**. <br>
 All calculations use fine crafted algorithms based on existing scientific formulas and equations, implemented from scratch all by myself.
 I love AI, but this is not a right project for using LLMs.
@@ -140,7 +143,7 @@ as possible to fill it with relevant content without unnecessary distraction. Af
 - RODO / GDPR best practices are followed, application gathers as little data as possible respecting user privacy,
 - HTTPS protocol in full/strict protocol used for all pages,
 - state-of-art encryption algorithms are used to protect sensitive data,
-- secrets are stored in an external cloud key-vault
+- secrets are stored securely in an external cloud key-vault
 
 ## 3. CURRENT VERSION
 Status: pre-release <br>
@@ -187,17 +190,22 @@ Version: **0.0.1-alpha**
 * simple mixing of two flows with humidity content,
 * mixing of multiple flows with humidity content,
 
+**Hydraulic Conduits: DuctX**
+* multiple shapes: circular, rectangular, elliptical
+* flow velocity and Reynolds Number,
+* linear pressure loss and Linear resistance
+* Colebrooke-White Friction Factor (numerical computation)
+* linear mass density of a duct, based on selected construction materials and insulation layers
+* database with dimension series of real market duct products for different applications
+* calculation based on real properties of humid air
+* heatMap chart for full series results presentation:
+
+[![logo-sns.png](assets/images/ductXheatmap.png)](https://energyflowx.com/hydraulics/duct-sizing-calculator)
+
 ### ⇒ Functionalities available in the backend but not yet provided in the frontend:
 
 **Sequential process computation procedure:**
 * user defined collection of process definitions to be sequentially calculated using predecessor output as successor input, allowing to simulate any user custom HVAC process
-
-**Hydraulic Conduits:**
-* multiple shapes: circular, rectangular, elliptical
-* flow velocity and Reynolds Number,
-* Linear pressure loss and Linear resistance
-* Colebrooke-White Friction Factor (numerical computation)
-* Linear mass density of a duct, based on selected construction materials and insulation layers
 
 ## 5. REST API
 
