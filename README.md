@@ -1,40 +1,40 @@
-# ENERGY FLOW X (EFX) - HVAC Engineer's Analysis Toolkit
+# ENERGY FLOW X (EFX) — Thermodynamics & HVAC Engineering Platform
 
-Introducing <strong> Energy Flow X</strong>, an advanced web application for engineers!
+Introducing <strong>Energy Flow X</strong>, a professional-grade web platform and REST API for thermodynamic calculations, HVAC engineering, and fluid mechanics.
 
 | PROJECT LOGO (Copyright pending)                                       | URL's:                                                                                                           |
 |------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 | [<img src="assets/images/efx-og-default.png" alt="logo-sns.png" style="width:500px;">](https://energyflowx.com) | ⇒ [Go to EFX Website](https://energyflowx.com) ⇐ <br><br> ⇒ [Go to EFX Demo API](https://demo.energyflowx.com) ⇐ |
 
-EnergyFlowX integrates the following of my HVAC engineering libraries:
-- [HVAC | Engine](https://github.com/pjazdzyk/hvac-engine) - The physics of air with water vapor content including thermodynamic processes,
-- [UNITILITY - Spring](https://github.com/pjazdzyk/unitility) - The physical quantity and units of measure conversion handling library,
-- [Brent Dekker Solver](https://github.com/pjazdzyk/brent-dekker-solver) - The enhanced implementation of a famous Brent-Dekker numerical scheme for solving nested equations.
+EnergyFlowX is powered by a family of engineering libraries built from scratch:
+- [HVAC-Engine-Pro](https://github.com/pjazdzyk/hvac-engine-pro) — Thermodynamic properties and processes: dry/humid air, water & steam (IAPWS-IF97), ice, plus HVAC process calculations (heating, cooling, mixing, heat recovery),
+- [Unitility](https://github.com/pjazdzyk/unitility) — Physical quantities and units of measure conversion framework,
+- [Brent-Dekker Solver](https://github.com/pjazdzyk/brent-dekker-solver) — Enhanced numerical root-finding for nested equations.
 
-This service is dedicated to HVAC/MEP, mechanical engineers, and chemical and process engineers providing accurate calculations of air properties with humidity
-content (Psychrometrics) and thermodynamic processes within the typical parameters scope for HVAC industry applications.<br>
+This platform serves HVAC/MEP engineers, mechanical engineers, and chemical/process engineers with precise, standards-based calculations spanning psychrometrics, steam/water thermodynamics (IAPWS-IF97), ice properties, hydraulic flow in ducts and pipes, and heat recovery systems.<br>
 
-#### EnergyFlowX is planned to be commercialized in the coming months, once the testing phase with end users is successfully completed.
+#### EnergyFlowX is being prepared for commercial launch following the end-user testing phase.
 
 > This is not "_just another psychrometrics calculator_." <br>
 > It is a **comprehensive engineering software ecosystem**, designed to support the development of complex engineering projects like this one. <br>
 > This product is the result of **years of development, with over 10,000 hours** of personal time invested. <br>
 > The frontend is merely the crowning jewel — the cherry on top. <br>
 
-To readers unfamiliar with fluid mechanics and thermodynamics, the calculation forms may appear deceptively simple. 
-But **trust me** — there’s nothing simple here once you look behind the curtain… <br>
+To readers unfamiliar with fluid mechanics and thermodynamics, the calculation forms may appear deceptively simple.
+But **trust me** — there's nothing simple here once you look behind the curtain… <br>
 
-Fluid parameters are not assumed as constants (specific heat, or density as an example) as in many other available psychrometrics tools. 
-Every temperature-dependent property is calculated based on equations available in standards (e.g., ASHRAE), scientific journals and papers,
-or formulas derived by myself. You can review the full list of reference sources at the end of this documentation.
+No fluid parameters are assumed as constants (specific heat, density, etc.) as is common in many available tools.
+Every temperature- and pressure-dependent property is calculated from first-principles equations sourced from international standards (IAPWS, ASHRAE), peer-reviewed scientific journals,
+or formulas derived independently. Review the full list of reference sources at the end of this documentation.
 
 ## WEBSITE AND API
-Eager to see how the project works and help HVAC engineers? Visit the site below, register to create your own free 
-account, and feel free to explore the site! <br>
 
-If you are a developer interested in creating your own application—check the API demo. I can provide you REST API as a service
-so you could focus on your application business layer instead of investing ~10 000 of hours for building backbone physics libraries as I did.
-API-As-Service is available only in individual pricing mode. Contact me directly for details!
+Eager to see how the project works? Visit the site below, register to create your own free
+account, and explore the platform! <br>
+
+If you are a developer interested in building your own application — check the API demo. I offer REST API as a service
+so you can focus on your application's business logic instead of investing ~10,000 hours into building backbone physics libraries.
+API-as-a-Service is available on an individual pricing basis. Contact me directly for details!
 
 | CREATED BY (All rights reserved):           | DEVELOPER:                                                                                                                                                         |
 |---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -51,43 +51,57 @@ Multiple air stream mixing process showcase:
 Humid air thermophysical properties calculation showcase:
 [![logo-sns.png](assets/images/animated/humid_air.gif)](https://energyflowx.com/fluid-properties/humid-air)
 
-DuctX - comprehensive ventilation duct sizing calculator:
+DuctX — comprehensive ventilation duct sizing calculator:
 [![logo-sns.png](assets/images/animated/ductXdemo.gif)](https://energyflowx.com/hydraulics/duct-sizing-calculator)
 
 **NO AI ZONE**. <br>
-All calculations use fine crafted algorithms based on existing scientific formulas and equations, implemented from scratch all by myself.
-I love AI, but this is not a right project for using LLMs.
+All calculations use hand-crafted algorithms based on established scientific formulas and equations, implemented from scratch.
+I love AI, but this is not the right project for LLMs.
 
 ---
+
 # DOCUMENTATION
 
-1. [Tech & dependencies](#1-tech-and-dependencies) <br>
-2. [System design & architecture](#2-system-design) <br>
-3. [Current version](#3-current-version) <br>
-4. [Functionality](#4-functionality) <br>
-5. [REST API](#5-rest-api) <br>
-   5.1 [Api versioning](#51-versioning) <br>
-   5.2 [Physical quantity master data](#52-physical-quantities-master-data) <br>
-   5.3 [Units of measure conversion](#53-physical-quantities-conversion) <br>
-   5.4 [Properties of dry / humid air](#54-physical-properties-of-humid-air) <br>
-   5.5 [Heating process](#55-process-of-heating) <br>
-   5.6 [Cooling process](#56-process-of-real-cooling-with-condensate-discharge) <br>
-   5.7 [Mixing process](#57-process-of-mixing) <br>
-   5.8 [Multiple processes in sequence](#58-sequential-process-computation) <br>
-   5.9 [Unit Overrides](#59-unit-overrides) <br>
-   5.10 [Hydraulic Conduit](#510-hydraulic-conduit) <br>
-   5.11 [Error response](#511-error-response) <br>
-   5.12 [SwaggerUI](#512-swagger-ui) <br>
-6. [Attribution and citation](#6-licensing-attribution-and-citation) <br>
-7. [Feature request and bug reporting](#7-feature-request-and-bug-reporting) <br>
-8. [Acknowledgments](#8-acknowledgments) <br>
-9. [Reference sources](#9-reference-sources) <br>
+1. [Tech & dependencies](#1-tech-and-dependencies)
+2. [System design & architecture](#2-system-design)
+3. [Current version](#3-current-version)
+4. [Functionality](#4-functionality)
+5. [REST API](#5-rest-api)
+   5.1 [API versioning](#51-api-versioning)
+   5.2 [Physical quantities master data](#52-physical-quantities-master-data)
+   5.3 [Unit conversion](#53-unit-conversion)
+   5.4 [Dry air properties](#54-dry-air-properties)
+   5.5 [Liquid water properties](#55-liquid-water-properties)
+   5.6 [Humid air properties](#56-humid-air-properties)
+   5.7 [Steam properties (IAPWS-IF97)](#57-steam-properties)
+   5.8 [Ice Ih properties](#58-ice-ih-properties)
+   5.9 [Property tables generation](#59-property-tables)
+   5.10 [Heating process](#510-heating-process)
+   5.11 [Cooling process](#511-cooling-process)
+   5.12 [Mixing process](#512-mixing-process)
+   5.13 [Heat recovery process](#513-heat-recovery-process)
+   5.14 [Humid air flow calculations](#514-humid-air-flow-calculations)
+   5.15 [Sequential process computation](#515-sequential-process-computation)
+   5.16 [Unit overrides](#516-unit-overrides)
+   5.17 [Hydraulic conduit](#517-hydraulic-conduit)
+   5.18 [Conduit master data](#518-conduit-master-data)
+   5.19 [Materials database](#519-materials-database)
+   5.20 [Benchmark](#520-benchmark)
+   5.21 [File download](#521-file-download)
+   5.22 [Error response](#522-error-response)
+   5.23 [Swagger UI](#523-swagger-ui)
+6. [Licensing, attribution, and citation](#6-licensing-attribution-and-citation)
+7. [Feature request and bug reporting](#7-feature-request-and-bug-reporting)
+8. [Acknowledgments](#8-acknowledgments)
+9. [Reference sources](#9-reference-sources)
+
+---
 
 ## 1. TECH AND DEPENDENCIES
 
-<strong>EnergyFlow X</strong> is developed using the following technologies: <br>
+<strong>EnergyFlow X</strong> is built with the following technologies:
 
-Frontend: <br>
+Frontend:
 ![image](https://img.shields.io/badge/Vue%20js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D) &nbsp;
 ![image](https://img.shields.io/badge/Quasar-1976D2?style=for-the-badge&logo=quasar&logoColor=white) &nbsp;
 ![image](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E) &nbsp;
@@ -95,240 +109,338 @@ Frontend: <br>
 ![image](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) &nbsp;
 ![image](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) &nbsp;
 
-Backend: <br>
-![image](https://img.shields.io/badge/21-Java-orange?style=for-the-badge) &nbsp;
+Backend:
+![image](https://img.shields.io/badge/Java_21-orange?style=for-the-badge&logo=openidconnect&logoColor=white) &nbsp;
 ![image](https://img.shields.io/badge/apache_maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white) &nbsp;
 ![image](https://img.shields.io/badge/Junit5-25A162?style=for-the-badge&logo=junit5&logoColor=white) &nbsp;
 ![image](https://img.shields.io/badge/Spring_Boot-F2F4F9?style=for-the-badge&logo=spring-boot) &nbsp;
 ![image](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white) &nbsp;
 ![image](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) &nbsp;
 
-Infrastructure:<br>
+Infrastructure:
 ![image](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white) &nbsp;
 ![image](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white) &nbsp;
 ![image](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white) &nbsp;
 ![image](https://img.shields.io/badge/Sonar%20cloud-F3702A?style=for-the-badge&logo=sonarcloud&logoColor=white) &nbsp;
 ![image](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white) &nbsp;
 
-Engineering libraries:<br>
-[![Unitility](https://img.shields.io/badge/UNITILITY-2.8.0-13ADF3?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMi41bW0iIGhlaWdodD0iMTQuNW1tIiB2aWV3Qm94PSIwIDAgMjI1MCAxNDUwIj4NCiAgPHBvbHlnb24gZmlsbD0iIzUwN0QxNCIgcG9pbnRzPSIyMjQxLjAzLDE1Ljg4IDExMzYuMzgsMTUuODQgOTA1Ljg4LDQxNS4xIDIwMTAuNTMsNDE1LjA5IiAvPg0KICA8cG9seWdvbiBmaWxsPSIjNzFBQjIzIiBwb2ludHM9IjExMTYuMzgsMTUuODQgNjU1Ljk5LDE1Ljg0IDQ5NC4xNSwyOTYuMTcgNzI4LjM1LDY5NC44OCIgLz4NCiAgPHBvbHlnb24gZmlsbD0iIzhBQzkzNCIgcG9pbnRzPSI0ODQuMTUsMzA2LjE3IDI1NS4wNiw3MDIuOTYgMzg3LjY2LDkzMi42NCA4NDUuODMsOTMyLjYzIiAvPg0KICA8cG9seWdvbiBmaWxsPSIjNThEMEZGIiBwb2ludHM9Ii03LjE3LDE0NDAuMDkgMTA5Ny45NywxNDQwLjA4IDEzMjguNDcsMTA0MC44MyAyMjMuMzIsMTA0MC44NSIgLz4NCiAgPHBvbHlnb24gZmlsbD0iIzEzQURGMyIgcG9pbnRzPSIxNzM5LjA0LDExNjAuOTEgMTUwOS4wOSw3NjIuNjQgMTExNy45NywxNDQwLjA4IDExODYuOTMsMTQ0MC4wOCAxNTc3Ljg3LDE0NDAuMDgiIC8+DQogIDxwb2x5Z29uIGZpbGw9IiMwMzkzRDAiIHBvaW50cz0iMTk3OC44LDc1Mi45NiAxODQ2LjIsNTIzLjMgMTM4Ni42OCw1MjMuMyAxNzQ5LjA0LDExNTAuOTEiIC8+DQo8L3N2Zz4=)](https://github.com/pjazdzyk/Unitility) &nbsp;
-[![Brent-Dekker-Solver](https://img.shields.io/badge/Brent_Dekker%20solver-2.10-13ADF3?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMi41bW0iIGhlaWdodD0iMTQuNW1tIiB2aWV3Qm94PSIwIDAgMjI1MCAxNDUwIj4NCiAgPHBvbHlnb24gZmlsbD0iIzUwN0QxNCIgcG9pbnRzPSIyMjQxLjAzLDE1Ljg4IDExMzYuMzgsMTUuODQgOTA1Ljg4LDQxNS4xIDIwMTAuNTMsNDE1LjA5IiAvPg0KICA8cG9seWdvbiBmaWxsPSIjNzFBQjIzIiBwb2ludHM9IjExMTYuMzgsMTUuODQgNjU1Ljk5LDE1Ljg0IDQ5NC4xNSwyOTYuMTcgNzI4LjM1LDY5NC44OCIgLz4NCiAgPHBvbHlnb24gZmlsbD0iIzhBQzkzNCIgcG9pbnRzPSI0ODQuMTUsMzA2LjE3IDI1NS4wNiw3MDIuOTYgMzg3LjY2LDkzMi42NCA4NDUuODMsOTMyLjYzIiAvPg0KICA8cG9seWdvbiBmaWxsPSIjNThEMEZGIiBwb2ludHM9Ii03LjE3LDE0NDAuMDkgMTA5Ny45NywxNDQwLjA4IDEzMjguNDcsMTA0MC44MyAyMjMuMzIsMTA0MC44NSIgLz4NCiAgPHBvbHlnb24gZmlsbD0iIzEzQURGMyIgcG9pbnRzPSIxNzM5LjA0LDExNjAuOTEgMTUwOS4wOSw3NjIuNjQgMTExNy45NywxNDQwLjA4IDExODYuOTMsMTQ0MC4wOCAxNTc3Ljg3LDE0NDAuMDgiIC8+DQogIDxwb2x5Z29uIGZpbGw9IiMwMzkzRDAiIHBvaW50cz0iMTk3OC44LDc1Mi45NiAxODQ2LjIsNTIzLjMgMTM4Ni42OCw1MjMuMyAxNzQ5LjA0LDExNTAuOTEiIC8+DQo8L3N2Zz4=)](https://github.com/pjazdzyk/brent-dekker-solver) &nbsp;
-[![Hvac-Engine](https://img.shields.io/badge/Hvac_Engine-2.2.0-13ADF3?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMi41bW0iIGhlaWdodD0iMTQuNW1tIiB2aWV3Qm94PSIwIDAgMjI1MCAxNDUwIj4NCiAgPHBvbHlnb24gZmlsbD0iIzUwN0QxNCIgcG9pbnRzPSIyMjQxLjAzLDE1Ljg4IDExMzYuMzgsMTUuODQgOTA1Ljg4LDQxNS4xIDIwMTAuNTMsNDE1LjA5IiAvPg0KICA8cG9seWdvbiBmaWxsPSIjNzFBQjIzIiBwb2ludHM9IjExMTYuMzgsMTUuODQgNjU1Ljk5LDE1Ljg0IDQ5NC4xNSwyOTYuMTcgNzI4LjM1LDY5NC44OCIgLz4NCiAgPHBvbHlnb24gZmlsbD0iIzhBQzkzNCIgcG9pbnRzPSI0ODQuMTUsMzA2LjE3IDI1NS4wNiw3MDIuOTYgMzg3LjY2LDkzMi42NCA4NDUuODMsOTMyLjYzIiAvPg0KICA8cG9seWdvbiBmaWxsPSIjNThEMEZGIiBwb2ludHM9Ii03LjE3LDE0NDAuMDkgMTA5Ny45NywxNDQwLjA4IDEzMjguNDcsMTA0MC44MyAyMjMuMzIsMTA0MC44NSIgLz4NCiAgPHBvbHlnb24gZmlsbD0iIzEzQURGMyIgcG9pbnRzPSIxNzM5LjA0LDExNjAuOTEgMTUwOS4wOSw3NjIuNjQgMTExNy45NywxNDQwLjA4IDExODYuOTMsMTQ0MC4wOCAxNTc3Ljg3LDE0NDAuMDgiIC8+DQogIDxwb2x5Z29uIGZpbGw9IiMwMzkzRDAiIHBvaW50cz0iMTk3OC44LDc1Mi45NiAxODQ2LjIsNTIzLjMgMTM4Ni42OCw1MjMuMyAxNzQ5LjA0LDExNTAuOTEiIC8+DQo8L3N2Zz4=)](https://github.com/pjazdzyk/hvac-engine) &nbsp;
+Engineering libraries:
+[![Unitility](https://img.shields.io/badge/UNITILITY-latest-13ADF3?style=for-the-badge)](https://github.com/pjazdzyk/unitility) &nbsp;
+[![Brent-Dekker-Solver](https://img.shields.io/badge/Brent_Dekker_Solver-latest-13ADF3?style=for-the-badge)](https://github.com/pjazdzyk/brent-dekker-solver) &nbsp;
+[![HVAC-Engine-Pro](https://img.shields.io/badge/HVAC_Engine_Pro-latest-13ADF3?style=for-the-badge)](https://github.com/pjazdzyk/hvac-engine-pro) &nbsp;
+
+---
 
 ## 2. SYSTEM DESIGN
-EnergyFlowX is designed as a small microservice deployed on an external server using docker swarm. Separation of Concerns is applied,
-and the following independent services have been developed:
 
-- **user manager service** - responsible for handling all user-related functions such as registration or account management,
-- **business logic service** - HVAC process and fluid properties computation and units of measure conversion and all other features,
-- **reverse proxy server** - Apache NGINX server instance, serving static frontend assets and acting as reverse proxy.
+EnergyFlowX is deployed as a set of microservices on an external server using Docker Swarm. Separation of Concerns is applied,
+with the following independent services:
 
-**Backend** service responsible for business logic was developed in hexagonal architecture. Why hexagonal? For practice and training, 
-and because I like it. User manager was designed using classic multi-layer architecture.
-Both services are designed as modular with separated API and CORE Maven modules. API module is composed of port interfaces to be implemented
-by Rest Controllers in CORE infrastructure.<br>
+- **User manager service** — user registration, authentication, and account management,
+- **Business logic service** — all thermodynamic, HVAC process, fluid properties, unit conversion, hydraulic, and materials computations,
+- **Reverse proxy server** — NGINX instance serving static frontend assets and acting as a reverse proxy.
 
-**Frontend** is developed using the latest version of VUE.JS and Quasar, using JavaScript as a main programming language. Plenty of custom-made
-components are designed to create ScientificInput acting as a placeholder for physical quantity value and unit with automatic validation
-and value conversion when different unit is selected by user. <br>
-Frontend is build to be **super lightweight and fast**. There is no single PNG or JPG image used on page. Only vector graphic is used
-in SVG format including the icons. Pages are focused to deliver content, to be user-friendly, and to use the available screen size as much
-as possible to fill it with relevant content without unnecessary distraction. After all this project is meant to be used by engineers in their daily routine. <br>
+The **Backend** business-logic service follows a hexagonal (ports-and-adapters) architecture. Both user manager and business logic
+services are structured as modular Maven projects with separated API and CORE modules. The API module defines port interfaces
+implemented by REST controllers in the CORE infrastructure layer.
 
-**Google Analytics** is used for basic page usage statistics. Proper **SEO** tags have been defined to ensure search engine positioning.
+The **Frontend** is built with Vue.js and Quasar Framework in JavaScript. Custom components like `ScientificInput` handle
+physical quantity values with associated units, automatic validation, and live unit conversion.
+The frontend is designed to be **super lightweight and fast** — no raster images (PNG/JPG) are used; all graphics are
+vector-based SVG. Pages prioritize content density and usability for engineers in daily professional use.
 
-**Security** has been guaranteed following the best industry practices:
+**Google Analytics** tracks basic page usage. **SEO** meta tags are configured for search engine visibility.
 
-- RBAC (role-based access) provided to allow only a certain group of users to access specific content, leaving some content available for everyone,
-- RODO / GDPR best practices are followed, application gathers as little data as possible respecting user privacy,
-- HTTPS protocol in full/strict protocol used for all pages,
-- state-of-art encryption algorithms are used to protect sensitive data,
-- secrets are stored securely in an external cloud key-vault
+**Security** follows industry best practices:
+
+- RBAC (role-based access control) for tiered content access,
+- GDPR/ROD-compliant data handling with minimal data collection,
+- HTTPS (strict mode) across all pages,
+- Modern encryption algorithms for sensitive data,
+- Secrets stored in an external cloud key-vault.
+
+---
 
 ## 3. CURRENT VERSION
-Status: pre-release <br>
+
+Status: **pre-release** <br>
 Version: **0.0.1-alpha**
+
+---
 
 ## 4. FUNCTIONALITY
 
 ### ⇒ Available application capabilities:
 
 **Dry air properties:**
-* relative humidity,
-* kinematic and dynamic viscosity,
-* thermal conductivity,
-* specific enthalpy,
-* specific heat,
-* density,
-* thermal diffusivity,
-* Prandtl number,
+- Density, specific enthalpy, specific heat (Cp, Cv),
+- Kinematic and dynamic viscosity,
+- Thermal conductivity, thermal diffusivity,
+- Prandtl number,
+- Wide temperature/pressure range per Lemmon & Jacobsen (2000).
 
-**Moist air properties:**
-* vapour saturation pressure,
-* dew point temperature, wet bulb temperature,
-* relative humidity,
-* humidity ratio and maximum humidity ratio,
-* kinematic and dynamic viscosity,
-* thermal conductivity,
-* specific enthalpy of humid air with water mist and ice mist components,
-* specific heat,
-* density,
-* thermal diffusivity,
-* Prandtl number,
+**Liquid water properties (IAPWS-IF97):**
+- Density, specific enthalpy, specific entropy,
+- Specific heat (Cp, Cv),
+- Speed of sound, isothermal compressibility,
+- Thermal expansion coefficient,
+- Viscosity and thermal conductivity (IAPWS formulations),
+- Surface tension.
+
+**Steam / water vapor properties (IAPWS-IF97):**
+- Full coverage of Regions 1–5 (compressed liquid, superheated vapor, near-critical, two-phase, high-pressure/high-temperature),
+- All standard thermodynamic properties (density, enthalpy, entropy, Cp, Cv, speed of sound, etc.),
+- Backward equations p(h,s), v(p,T),
+- Boundary and saturation equations.
+
+**Ice Ih properties:**
+- Gibbs energy equation of state (IAPWS R10-06),
+- Density, enthalpy, entropy, heat capacity,
+- Compressibility, thermal expansion coefficient,
+- Melting and sublimation curve pressures.
+
+**Moist (humid) air properties:**
+- Vapour saturation pressure, dew point and wet bulb temperatures,
+- Relative humidity, humidity ratio (and maximum humidity ratio),
+- Specific enthalpy (including water mist and ice mist components),
+- Kinematic and dynamic viscosity, thermal conductivity,
+- Specific heat, density, thermal diffusivity, Prandtl number,
+- Enhanced fugacity calculations per IAPWS G11-15.
 
 **Air heating:**
-* heating process for input heating power,
-* heating process for target outlet air temperature,
-* heating process for target outlet air relative humidity,
+- For a given input heating power,
+- For a target outlet air temperature,
+- For a target outlet air relative humidity.
 
-**Air cooling:**
-* real cooling process with a condensate discharge process for input cooling power,
-* real cooling process with a condensate discharge process for target outlet temperature,
-* real cooling process with a condensate discharge process for target outlet relative humidity,
+**Air cooling (with condensate discharge):**
+- For a given input cooling power,
+- For a target outlet temperature,
+- For a target outlet relative humidity,
+- Optional coolant secondary-side calculations.
+
+**Heat recovery:**
+- From a given effectiveness value,
+- For a target supply temperature,
+- For a target recovered power,
+- Support for multiple heat recovery types (enthalpic, sensible, latent, total),
+- Air-to-air and air-to-water configurations,
+- Frost/defrost diagnostics, condensate tracking, leakage modeling.
 
 **Air stream mixing:**
-* simple mixing of two flows with humidity content,
-* mixing of multiple flows with humidity content,
+- Two-flow mixing with humidity content,
+- Multi-flow mixing (up to 20 streams).
 
-**Hydraulic Conduits: DuctX**
-* multiple shapes: circular, rectangular, elliptical
-* flow velocity and Reynolds Number,
-* linear pressure loss and Linear resistance
-* Colebrooke-White Friction Factor (numerical computation)
-* linear mass density of a duct, based on selected construction materials and insulation layers
-* database with dimension series of real market duct products for different applications
-* calculation based on real properties of humid air
-* heatMap chart for full series results presentation:
+**Humid air flow calculations:**
+- Inter-conversion between volumetric flow, mass flow, and dry-air mass flow at given state conditions.
+
+**Hydraulic conduits — DuctX & PipeX:**
+- Circular, rectangular, and elliptical cross-sections,
+- Flow velocity, Reynolds number,
+- Linear pressure loss and linear resistance,
+- Colebrook-White friction factor (iterative numerical solution),
+- Minor (local) pressure losses via loss coefficients (ζ),
+- Linear mass density from construction materials and insulation layers,
+- Master data database of real market duct and pipe products,
+- Calculations based on real humid air properties,
+- HeatMap visualization for full dimension series.
 
 [![logo-sns.png](assets/images/ductXheatmap.png)](https://energyflowx.com/hydraulics/duct-sizing-calculator)
 
-### ⇒ Functionalities available in the backend but not yet provided in the frontend:
+**Materials database:**
+- Construction and insulation materials with thermal and mechanical properties,
+- Hydraulic condition data (surface roughness),
+- Query by material type, layer type, or application.
 
-**Sequential process computation procedure:**
-* user defined collection of process definitions to be sequentially calculated using predecessor output as successor input, allowing to simulate any user custom HVAC process
+**Property tables generation:**
+- Generate multi-parameter thermodynamic property tables,
+- Configurable axes, modes, and step sizes.
+
+### ⇒ Functionalities available in the backend (API-only):
+
+**Sequential process computation:**
+- Chain multiple process definitions (heating, cooling, mixing, heat recovery) where each process's output feeds the next,
+- Simulate arbitrary air handling unit configurations,
+- Bulk computation mode for multiple scenarios in a single request.
+
+**Benchmark tool:**
+- Performance benchmarking of core computation engines.
+
+---
 
 ## 5. REST API
 
-REST Api is dedicated for developers who would like to use the capabilities of this service for developing
-their own HVAC software systems. API DEMO version is available for free with limited functionality and heavy rate limiters applied: https://demo.energyflowx.com/.
-Demo is provided for testing only. If you would like to have access to unlimited API - contact me for a custom pricing offer.
+The REST API empowers developers to integrate thermodynamic and HVAC calculations into their own software. A free demo is available at https://demo.energyflowx.com/ with limited functionality and rate limiting. For unlimited access, contact the author for pricing.
 
-### 5.1. Versioning
-Versioning is not planned for simplicity and to avoid maintaining of multiple apis and versions at the same time. However, if
-you need it for any reason, please let me know.
+All API paths are prefixed with `/api`. Physical quantities are specified as strings combining a numeric value and a unit symbol (e.g., `"20.5C"`, `"101325.0Pa"`). The full list of supported units is available via the `/api/quantities` endpoint.
+
+### 5.1. API Versioning
+
+The API is not versioned in the URL path to simplify maintenance. If versioned access is required, contact the author.
 
 ### 5.2. Physical quantities master data
 
-This endpoint provides information about all supported physical quantities and their corresponding units. It allows you to retrieve the full list of supported quantities and units, which can be useful for building dynamic interfaces or validating input data.
+Retrieve the full catalog of supported physical quantities and their units.
 
-| LP | PATH                          | MTHD | PATH VARIABLE                     |
-|----|-------------------------------|------|-----------------------------------|
-| 1  | `/quantities`                 | GET  | None                              |
-| 2  | `/quantities/{quantity-type}` | GET  | **quantity-type** (path variable) |
+| # | PATH                          | METHOD | DESCRIPTION                              |
+|---|-------------------------------|--------|------------------------------------------|
+| 1 | `/api/quantities`             | GET    | List all physical quantity types         |
+| 2 | `/api/quantities/{quantity-type}` | GET  | Get units for a specific quantity type   |
 
-Example response for `/quantities/temperature`: [Quantities_masterdata_response](assets/json/quantities_masterdata_response.json) <br>
+Example: [Quantities master data response](assets/json/quantities_masterdata_response.json)
 
-### 5.3. Physical quantities conversion
+### 5.3. Unit conversion
 
-This service enables the conversion of any supported physical quantity from its current unit to a specified target unit, provided the target unit belongs to the same type of quantity. You can retrieve the full list of supported physical quantities and their corresponding units from the `/quantities` (master data) REST service.
+Convert physical quantities between any supported units of the same quantity type.
 
-| LP | PATH                                  | MTHD | QUERY PARAMS / REQUEST BODY                                                           |
-|----|---------------------------------------|------|---------------------------------------------------------------------------------------|
-| 1  | `/quantities/convert/{quantity-type}` | GET  | **quantity-type** (path variable)<br/>**value**<br/>**from-unit**<br/>**target-unit** |
-| 2  | `/quantities/convert`                 | POST | [request-body-example](assets/json/multiple_quantity_conversion.json)                 |
+| # | PATH                                  | METHOD | PARAMETERS                                                    |
+|---|---------------------------------------|--------|---------------------------------------------------------------|
+| 1 | `/api/quantities/convert/{quantity-type}` | GET  | **quantity-type** (path), **value**, **from-unit**, **target-unit** (query) |
+| 2 | `/api/quantities/convert`             | POST   | [Request body example](assets/json/multiple_quantity_conversion.json) |
 
-Example response for multiple conversions: [Conversion_response](assets/json/conversion_response.json) <br>
+Example: [Conversion response](assets/json/conversion_response.json)
 
-### 5.4. Physical properties of humid air
+### 5.4. Dry air properties
 
-Endpoints available for users are listed below. Parameters written in bold font are required, the rest are optional. If not
-specified - default values will be assumed: <br>
-- pressure: "101325.0Pa"
-- relative-humidity: "0.0%"
-- humidity ratio: "0.0kg/kg"
-- imperial-units: "false"
+Calculate thermodynamic properties of dry air over wide temperature/pressure ranges (Lemmon & Jacobsen, 2000).
 
-Physical quantities must be specified as a String type with value and associated quantity unit, for example, "20.5C"
-as 20.5 degrees of Celsius. For the list of supported units, see the [Unitility](https://github.com/pjazdzyk/unitility) user guide. <br>
-Imperial units determine the unit system used in the response. For the input in query param or request objects, you can use
-any unit you want from the supported units pool (both imperial and SI).
+| # | PATH                    | METHOD | QUERY PARAMETERS                                                   |
+|---|-------------------------|--------|--------------------------------------------------------------------|
+| 1 | `/api/properties/dry-air` | GET   | **temperature**, pressure (default: 101325.0Pa), imperial-units, unit-overrides |
 
-| LP | PATH                                   | MTHD | QUERY PARAMS                                                                                                |
-|----|----------------------------------------|------|-------------------------------------------------------------------------------------------------------------|
-| 1  | `/properties/dry-air`                  | GET  | **temperature**<br/>pressure<br/>imperial-units<br/>unit-overrides                                          |
-| 2  | `/properties/humid-air`                | GET  | **temperature**<br/>pressure<br/>humidity-ratio<br/>relative-humidity<br/>imperial-units<br/>unit-overrides |
-| 3  | `/properties/humid-air/from-wet-bulb`  | GET  | **wet-bulb-temperature**<br/>pressure<br/>relative-humidity<br/>imperial-units<br/>unit-overrides           |
-| 4  | `/properties/humid-air/from-dew-point` | GET  | **dew-point-temperature**<br/>pressure<br/>relative-humidity<br/>imperial-units<br/>unit-overrides          |
-| 5  | `/properties/humid-air/from-enthalpy`  | GET  | **specific-enthalpy**<br/>pressure<br/>**humidity-ratio**<br/>imperial-units<br/>unit-overrides             |
-| 6  | `/properties/humid-air/from-humidity`  | GET  | **humidity-ratio**<br/>**relative-humidity**<br/>pressure<br/>imperial-units<br/>unit-overrides             |
+### 5.5. Liquid water properties
 
-Humid air response example: [Humid_air_response_SI](assets/json/humid_air_response.json) <br>
+Calculate properties of liquid water per IAPWS-IF97 Region 1 and IAPWS transport property formulations.
 
-### 5.5. Process of heating
-The process of heating is available in three different modes: from input power, for target temperature, or for target relative humidity.
-More details on a heating process can be found in [HVAC|Engine](https://github.com/pjazdzyk/hvac-engine/blob/master/README_GUIDE.MD)
-library user guide, section 3.1 Heating.
+| # | PATH                       | METHOD | QUERY PARAMETERS                                                   |
+|---|----------------------------|--------|--------------------------------------------------------------------|
+| 1 | `/api/properties/liquid-water` | GET  | **temperature**, **pressure**, imperial-units, unit-overrides      |
 
-| LP | PATH                                          | MTHD | REQUEST BODY EXAMPLE                                             | QUERY PARAMS   |
-|----|-----------------------------------------------|------|------------------------------------------------------------------|----------------|
-| 1  | `/processes/heating/target-input-power`       | POST | [request-body-example](assets/json/heating_req_input_power.json) | imperial-units |
-| 2  | `/processes/heating/target-temperature`       | POST | [request-body-example](assets/json/heating_req_target_temp.json) | imperial-units |
-| 3  | `/processes/heating/target-relative-humidity` | POST | [request-body-example](assets/json/heating_req_target_RH.json)   | imperial-units |
+### 5.6. Humid air properties
 
-As previously explained, setting query param imperial-units to true will provide a calculation result in a predefined set
-of imperial units.<br>
-Heating response example: [Heating_response_SI](assets/json/heating_response_temperature.json) <br>
+Six entry modes to compute humid air state from different input combinations.
 
-### 5.6. Process of real cooling with condensate discharge
-The process of cooling is available in three different modes: from input power, for target temperature, or for target relative humidity.
-More details on a heating process can be found in [HVAC|Engine](https://github.com/pjazdzyk/hvac-engine/blob/master/README_GUIDE.MD)
-library user guide, section 3.2 Cooling.
+| # | PATH                                      | METHOD | REQUIRED QUERY PARAMETERS                              |
+|---|-------------------------------------------|--------|--------------------------------------------------------|
+| 1 | `/api/properties/humid-air`               | GET    | **temperature**, (+ humidity-ratio OR relative-humidity) |
+| 2 | `/api/properties/humid-air/from-wet-bulb` | GET    | **wet-bulb-temperature**, (+ relative-humidity OR humidity-ratio) |
+| 3 | `/api/properties/humid-air/from-dew-point`| GET    | **dew-point-temperature**, **relative-humidity**         |
+| 4 | `/api/properties/humid-air/from-enthalpy` | GET    | **specific-enthalpy**, **humidity-ratio**                |
+| 5 | `/api/properties/humid-air/from-humidity` | GET    | **humidity-ratio**, **relative-humidity**                |
 
-| LP | PATH                                          | MTHD | REQUEST BODY EXAMPLE                                             | QUERY PARAMS   |
-|----|-----------------------------------------------|------|------------------------------------------------------------------|----------------|
-| 1  | `/processes/cooling/target-input-power`       | POST | [request-body-example](assets/json/cooling_req_input_power.json) | imperial-units |
-| 2  | `/processes/cooling/target-temperature`       | POST | [request-body-example](assets/json/cooling_req_target_temp.json) | imperial-units |
-| 3  | `/processes/cooling/target-relative-humidity` | POST | [request-body-example](assets/json/cooling_req_target_RH.json)   | imperial-units |
+All endpoints also accept optional: pressure (default: 101325.0Pa), imperial-units, unit-overrides.
 
-Cooling response example: [Cooling_response_SI](assets/json/cooling_response_temperature.json) <br>
+Example: [Humid air response](assets/json/humid_air_response.json)
 
-### 5.7. Process of mixing
-The process of mixing is available in two different modes: mixing of two humid air flows and mixing of multiple humid air flows, up to 20.
-More details on a heating process can be found in [HVAC|Engine](https://github.com/pjazdzyk/hvac-engine/blob/master/README_GUIDE.MD)
-library user guide, section 3.3 Mixing.
+### 5.7. Steam properties
 
-| LP | PATH                         | MTHD | REQUEST BODY EXAMPLE                                    | QUERY PARAMS   |
-|----|------------------------------|------|---------------------------------------------------------|----------------|
-| 1  | `/processes/mixing`          | POST | [request-body-example](assets/json/mixing_request.json) | imperial-units |
-| 2  | `/processes/mixing/multiple` | POST | [request-body-example](assets/json/mixing_request.json) | imperial-units |
+Full IAPWS-IF97 steam/water properties across all five regions, with multiple entry modes.
 
-Mixing response example: [Mixing_response_SI](assets/json/mixing_response.json) <br>
+| # | PATH                                  | METHOD | REQUIRED QUERY PARAMETERS                       |
+|---|---------------------------------------|--------|-------------------------------------------------|
+| 1 | `/api/properties/steam`               | GET    | **temperature**, **pressure**                   |
+| 2 | `/api/properties/steam/from-enthalpy` | GET    | **specific-enthalpy**, **pressure**             |
+| 3 | `/api/properties/steam/from-entropy`  | GET    | **specific-entropy**, **pressure**              |
+| 4 | `/api/properties/steam/from-mollier`  | GET    | **specific-enthalpy**, **specific-entropy**     |
 
-### 5.8. Sequential process computation
-Sequential processing procedure allows specifying multiple connected processes to simulate real HVAC air handling units
-or other devices. User specifies inlet airflow and process definitions (up to 20). Output of each process is taken
-as input of another process next in line. Calculations are based on sequential processing engine and flow data connectivity 
-model developed in HVAC|Engine library.
+All endpoints also accept optional: imperial-units, unit-overrides.
 
-| LP | PATH                     | MTHD | REQUEST BODY EXAMPLE                                        | QUERY PARAMS   |
-|----|--------------------------|------|-------------------------------------------------------------|----------------|
-| 1  | `/procedures/sequential` | POST | [request-body-example](assets/json/sequential_request.json) | imperial-units |
+### 5.8. Ice Ih properties
 
-Sequential procedure response example in SI units: [Multiple_processes_response_SI](assets/json/sequential_response.json) <br>
+Thermodynamic properties of ice (Ice Ih phase) per IAPWS R10-06 equation of state.
 
-### 5.9. Unit Overrides
-Unit Overrides allow you to specify in which unit a given quantity type should be provided in the response. 
-This feature gives you flexibility to receive data in the units that are most convenient for your application or analysis.
+| # | PATH                 | METHOD | QUERY PARAMETERS                                      |
+|---|----------------------|--------|-------------------------------------------------------|
+| 1 | `/api/properties/ice` | GET   | **temperature**, **pressure**, imperial-units, unit-overrides |
 
-Unit Overrides can be specified in two ways:
-1. As part of the request body in JSON requests (in the `unitOverrides` field)
-2. As query parameters for GET requests (using the `unit-overrides` parameter)
+### 5.9. Property tables
 
-The `unitOverrides` object is a key-value map where:
-- The key is the quantity type (e.g., "pressure", "temperature", "volumetricFlow")
-- The value is the unit symbol you want to use (e.g., "kPa", "K", "m3/min")
+Generate tabulated thermodynamic property data for reporting or further analysis.
 
-Example of unit overrides in a request body:
+| # | PATH                          | METHOD | DESCRIPTION                                  |
+|---|-------------------------------|--------|----------------------------------------------|
+| 1 | `/api/properties/table`       | POST   | Generate a property table (request body)     |
+| 2 | `/api/properties/table/modes` | GET    | List available table generation modes        |
+| 3 | `/api/properties/table/modes/{mode}` | GET | Get parameters for a specific mode |
+
+### 5.10. Heating process
+
+Heat a humid air stream in one of three modes.
+
+| # | PATH                                           | METHOD | REQUEST BODY EXAMPLE                                          |
+|---|------------------------------------------------|--------|---------------------------------------------------------------|
+| 1 | `/api/processes/heating/target-input-power`    | POST   | [Request body](assets/json/heating_req_input_power.json)      |
+| 2 | `/api/processes/heating/target-temperature`    | POST   | [Request body](assets/json/heating_req_target_temp.json)      |
+| 3 | `/api/processes/heating/target-relative-humidity` | POST | [Request body](assets/json/heating_req_target_RH.json)    |
+
+Query params: imperial-units, unit-overrides.
+Example: [Heating response](assets/json/heating_response_temperature.json)
+
+### 5.11. Cooling process
+
+Cool a humid air stream with condensate discharge in one of three modes. Optional coolant (secondary) side.
+
+| # | PATH                                           | METHOD | REQUEST BODY EXAMPLE                                          |
+|---|------------------------------------------------|--------|---------------------------------------------------------------|
+| 1 | `/api/processes/cooling/target-input-power`    | POST   | [Request body](assets/json/cooling_req_input_power.json)      |
+| 2 | `/api/processes/cooling/target-temperature`    | POST   | [Request body](assets/json/cooling_req_target_temp.json)      |
+| 3 | `/api/processes/cooling/target-relative-humidity` | POST | [Request body](assets/json/cooling_req_target_RH.json)    |
+
+Query params: imperial-units, unit-overrides.
+Example: [Cooling response](assets/json/cooling_response_temperature.json)
+
+### 5.12. Mixing process
+
+Mix two or more humid air streams.
+
+| # | PATH                           | METHOD | REQUEST BODY EXAMPLE                               |
+|---|--------------------------------|--------|----------------------------------------------------|
+| 1 | `/api/processes/mixing`        | POST   | [Request body](assets/json/mixing_request.json)    |
+| 2 | `/api/processes/mixing/multiple` | POST | [Request body](assets/json/mixing_request.json)    |
+
+Query params: imperial-units, unit-overrides.
+Example: [Mixing response](assets/json/mixing_response.json)
+
+### 5.13. Heat recovery process
+
+Compute heat recovery between supply and exhaust air streams with frost/defrost diagnostics, condensate tracking, and leakage modeling.
+
+| # | PATH                                                | METHOD | DESCRIPTION                           |
+|---|-----------------------------------------------------|--------|---------------------------------------|
+| 1 | `/api/processes/heat-recovery/from-effectiveness`   | POST   | Given heat recovery effectiveness     |
+| 2 | `/api/processes/heat-recovery/target-supply-temperature` | POST | Target supply outlet temperature |
+| 3 | `/api/processes/heat-recovery/target-recovered-power` | POST  | Target recovered thermal power      |
+
+Supports enthalpic, sensible, latent, and total heat recovery types. Air-to-air and air-to-water configurations. Defrost strategy configuration.
+
+Query params: imperial-units, unit-overrides.
+
+### 5.14. Humid air flow calculations
+
+Inter-convert volumetric flow, mass flow, and dry-air mass flow at specified state conditions.
+
+| # | PATH                     | METHOD | REQUEST BODY EXAMPLE                                  |
+|---|--------------------------|--------|-------------------------------------------------------|
+| 1 | `/api/flows/humid-air`   | POST   | [Request body](assets/json/humid_air_flow_request.json) |
+
+Example: [Flow response](assets/json/humid_air_flow_response.json)
+
+### 5.15. Sequential process computation
+
+Chain multiple HVAC processes where each process's output feeds the next input. Simulate arbitrary air handling unit configurations. Bulk mode supports multiple independent scenario chains in one request.
+
+| # | PATH                             | METHOD | REQUEST BODY EXAMPLE                                   |
+|---|----------------------------------|--------|--------------------------------------------------------|
+| 1 | `/api/procedures/sequential`     | POST   | [Request body](assets/json/sequential_request.json)    |
+
+Example: [Sequential response](assets/json/sequential_response.json)
+
+Query params: imperial-units, unit-overrides.
+
+### 5.16. Unit overrides
+
+All endpoints that return physical quantities support unit overrides to customize the output units:
+
+**In request body (POST):**
 ```json
 {
   "unitOverrides": {
@@ -339,85 +451,156 @@ Example of unit overrides in a request body:
 }
 ```
 
-Example of unit overrides as query parameters:
+**As query parameter (GET):**
 ```
-?unit-overrides=pressure_kPa,temperature_K
+?unit-overrides=pressure_kPa,temperature_K,volumetricFlow_m3%2Fmin
 ```
 
-You can retrieve the full list of supported physical quantities and their corresponding units from the `/quantities` (master data) REST service.
+Retrieve the full list of supported quantity types and unit symbols from `/api/quantities`.
 
-### 5.10. Hydraulic Conduit
-The Hydraulic Conduit API allows you to calculate flow parameters for different conduit shapes including circular, rectangular, and elliptical. It provides detailed information about flow characteristics, pressure losses, and conduit properties.
+### 5.17. Hydraulic conduit
 
-| LP | PATH                      | MTHD | REQUEST BODY EXAMPLE                                     | QUERY PARAMS   |
-|----|---------------------------|------|----------------------------------------------------------|----------------|
-| 1  | `/processes/conduit-flow` | POST | [request-body-example](assets/json/conduit_request.json) | imperial-units |
+Calculate flow characteristics for conduits (ducts and pipes) with circular, rectangular, or elliptical cross-sections.
 
-Conduit response example: [Conduit_response_SI](assets/json/conduit_response.json)
+| # | PATH                              | METHOD | REQUEST BODY EXAMPLE                               |
+|---|-----------------------------------|--------|----------------------------------------------------|
+| 1 | `/api/hydraulics/single-flow-mode` | POST   | [Request body](assets/json/conduit_request.json)   |
 
-### 5.11. Error response
-In case of validation errors or domain exceptions response will result in HTTP code of 400 (Bad Request).
-[InvalidResponse](assets/json/error_response.json) will
-be created and returned to user, with the following structure:
+Computes flow velocity, Reynolds number, friction factor (Colebrook-White), linear and local pressure losses, and structural mass.
+
+Example: [Conduit response](assets/json/conduit_response.json)
+
+### 5.18. Conduit master data
+
+Access databases of standard duct and pipe dimensions from real manufacturers, filtered by application, pressure class, leakage class, and material.
+
+| # | PATH                                      | METHOD | DESCRIPTION                                     |
+|---|-------------------------------------------|--------|-------------------------------------------------|
+| 1 | `/api/conduits/ducts/{ductCode}`          | GET    | Get duct master data by product code            |
+| 2 | `/api/conduits/pipes/{pipeCode}`          | GET    | Get pipe master data by product code            |
+| 3 | `/api/conduits/ducts/query`               | POST   | Query ducts by filter criteria                  |
+| 4 | `/api/conduits/pipes/query`               | POST   | Query pipes by filter criteria                  |
+| 5 | `/api/conduits/ducts/value-help/query`    | POST   | Lightweight value-help lookup for ducts         |
+| 6 | `/api/conduits/pipes/value-help/query`    | POST   | Lightweight value-help lookup for pipes         |
+
+### 5.19. Materials database
+
+Query construction and insulation materials with thermal, mechanical, and hydraulic properties.
+
+| # | PATH                  | METHOD | DESCRIPTION                          |
+|---|-----------------------|--------|--------------------------------------|
+| 1 | `/api/materials`      | POST   | Query materials by filter criteria   |
+
+Returns material properties, layer types, hydraulic roughness data, and thermal conductivity.
+
+### 5.20. Benchmark
+
+Run performance benchmarks on the core computation engines.
+
+| # | PATH                   | METHOD | DESCRIPTION                       |
+|---|------------------------|--------|-----------------------------------|
+| 1 | `/api/benchmark/run`   | GET    | Execute a benchmark run           |
+
+Returns timing data, throughput metrics, and per-engine summaries.
+
+### 5.21. File download
+
+Download reference documents and resources.
+
+| # | PATH                                       | METHOD | DESCRIPTION                       |
+|---|--------------------------------------------|--------|-----------------------------------|
+| 1 | `/api/resources/documents/{fileType}/{fileCode}` | GET  | Download a reference document |
+
+### 5.22. Error response
+
+Validation errors and domain exceptions return HTTP 400 (Bad Request) with a structured response:
+
 ```json
 {
-   "serviceName": "Energy Flow X",
-   "cause": "UnitSystemParseException",
-   "message": "Unsupported unit symbol: {xyz}. Target class: TemperatureUnits",
-   "timestamp": "2024-02-10T14:39:11.8551038Z"
+  "serviceName": "Energy Flow X",
+  "cause": "UnitSystemParseException",
+  "message": "Unsupported unit symbol: {xyz}. Target class: TemperatureUnits",
+  "timestamp": "2024-02-10T14:39:11.8551038Z"
 }
 ```
-Exception stack trace should never be returned to the user. If this happens, please let me know as soon as possible.
 
-### 5.12. Swagger Ui
-For easier API testing a SWAGGER UI has been provided, follow this URL: https://demo.energyflowx.com
+Internal stack traces are never exposed. Report any leaks immediately via the issue tracker.
+
+### 5.23. Swagger UI
+
+Interactive API documentation and testing is available at: https://demo.energyflowx.com
+
+---
 
 ## 6. LICENSING, ATTRIBUTION, AND CITATION
-Please be informed that any reference to this project must be appropriately cited to include the author's attribution.
-Additionally, it should be noted that while samples may have been shared publicly for educational purposes, the project
-as a whole is designated for commercial utilization. Unauthorized commercial usage is strictly prohibited.
-The author reserves all rights.
 
-## 7. Feature request and bug reporting
-I really appreciate your feedback and new ideas. This project was created by an engineer, for engineers.
-I want this site to be as helpful as possible in your daily tasks. Please report any bugs or feature requests 
-on the [GitHub Issues](https://github.com/pjazdzyk/energy-flow-x-demo/issues) page.
+Any reference to this project must include proper attribution to the author. While code samples may be shared publicly for educational purposes, the project as a whole is designated for commercial use under the author's terms. Unauthorized commercial use is strictly prohibited. All rights reserved by the author.
 
-### **Help me improve by reporting any bugs you encounter.**
-To ensure we can resolve issues quickly, please include the following information in your report:
+---
 
-- **Page or Functionality**: Specify which page or feature you were using when the issue occurred.
-- **Description**: Provide a clear and detailed description of the bug.
-- **Input Data**: Mention the data or inputs used when the bug occurred.
-- **Result and Expectation**: Explain what happened and what you expected to happen.
-- **App Version**: Include the app version, which you can find at the bottom of the application.
+## 7. FEATURE REQUEST AND BUG REPORTING
 
-**Your feedback is the fuel that drives this project forward.**  
-Every suggestion, idea, or bug report helps make this tool better for everyone—thank you for being a part of that process!
+Feedback and ideas are welcome. This project was built by an engineer, for engineers — I want it to be as useful as possible in your daily work. Submit bugs and feature requests on the [GitHub Issues](https://github.com/pjazdzyk/energy-flow-x-demo/issues) page.
+
+### Help me improve by reporting bugs:
+
+Include the following in your report:
+
+- **Page or Functionality** — where the issue occurred,
+- **Description** — clear and detailed account of the bug,
+- **Input Data** — values/inputs used when the bug triggered,
+- **Result and Expectation** — what happened vs. what you expected,
+- **App Version** — found at the bottom of the application.
+
+**Your feedback is the fuel that drives this project forward.**
+Every suggestion and bug report makes this tool better — thank you for being part of the process!
+
+---
 
 ## 8. ACKNOWLEDGMENTS
 
 I want to thank [Mabas83](https://github.com/mabas83), for everything you did for me. <br>
-I extend my heartfelt gratitude to the [Silesian University of Technology](https://www.polsl.pl/en/) for the knowledge, scientific guidance, and for shaping me into an engineer.<br>
-Special thanks for [GreedyJ4ck](https://github.com/greedyj4ck) for multiple discussion and valuable suggestions during frontend development. BIG THANKS!
+Heartfelt gratitude to the [Silesian University of Technology](https://www.polsl.pl/en/) for the knowledge, scientific guidance, and for shaping me into an engineer.<br>
+Special thanks to [GreedyJ4ck](https://github.com/greedyj4ck) for discussions and valuable suggestions during frontend development. BIG THANKS!
+
+---
 
 ## 9. REFERENCE SOURCES
 
-* [1] - ASHRAE FUNDAMENTALS 2002, CHAPTER 6 "Psychrometrics"
-* [2] - Buck, Arden L. "New Equations for Computing Vapour Pressure and Enhancement Factor". Journal of Applied Meteorology and Climatology (December 1981).
-* [3] - Buck Research Instruments L.L.C. "MODEL CR-1A HYGROMETER WITH AUTO FILL OPERATING MANUAL" (May 2012).
-* [4] - Morvay Z.K, Gvozdenac D.D. "Fundamentals for analysis and calculation of energy and environmental performance". Applied Industrial Energy And Environmental Management.
-* [5] - Lipska B. "Projektowanie Wentylacji i Klimatyzacji. Podstawy uzdatniania powietrza" Wydawnictwo Politechniki Śląskiej (Gliwice 2014).
-* [6] - https://www.engineeringtoolbox.com
-* [7] - Stull R. "Wet-Bulb Temperature from Relative Humidity and Air Temperature". Manuscript received 14 July 2011, in final form 28 August 2011
-* [8] - Tsilingiris P.T "Thermophysical and transport properties of humid air at temperature range between 0 and 100oC". Elsevier, Science Direct (September 2007)
-* [9] - E.W. Lemmon, R.T. Jacobsen, S.G. Penoncello, D. Friend. Thermodynamic Properties of Air and Mixtures of Nitrogen, Argon, and Oxygen from 60 to 2000 K at Pressures to 2000 MPa. J. Phys. Chem. Ref. Data, Vol. 29, No. 3, (2000)
-* [11] - F.E. Jones, G.L. Harris. ITS-90 Density of water formulation for volumetric standards' calibration. Journal of Research of the National Institute of Standards and Technology (1992)
-* [12] - Water specific heat tables: https://www.engineeringtoolbox.com/specific-heat-capacity-water-d_660.html
-* [13] - Mitosek M. Mechanika płynów w inżynierii i ochronie środowiska. Polskie Wydawnictwo Naukowe PWN (2001r).
-* [14] - Lotfi Z., Jean Loup R., Bachir A. Explicit solutions for a turbulent flow friction factor: A review, assessment, and approaches classification. Ain Shams Engineering Journal (2019r)
-* [15] - Brent-Dekker Iterative Solver - Modified Algorithm proposed by Zhengqiu Zhang / International Journal of Experimental Algorithms (IJEA), Volume (2) : Issue (1) : 2011
-* [16] - F.E. Jones, G.L. Harris. ITS-90 Density of water formulation for volumetric standards' calibration. Journal of Research of the National Institute of Standards and Technology (1992)
-* [17] - Water specific heat tables: https://www.engineeringtoolbox.com/specific-heat-capacity-water-d_660.html
-* [18] - Antoine Equation Coefficient for pure substances: https://myengineeringtools.com/Data_Diagrams/Antoine_Law_Coefficients.html
-* [19] - M. L. Huber,a… R. A. Perkins, A. Laesecke, and D. G. Friend. J. V. Sengers M. J. Assael and I. N. Metaxa E. Vogel R. Mareš K. Miyagawa. New International Formulation for the Viscosity of H2O. Journal of Research of the National Institute of Standards and Technology (1992)
+### Water & Steam (Liquid / Vapor) — IAPWS Formulations
+
+- **[1]** IAPWS R7-97(2012) — *Industrial Formulation for the Thermodynamic Properties of Water and Steam (IF97)*. Covers Regions 1–5, boundary equations, backward equations, and uncertainty estimates. Valid up to 100 MPa, 273.15 K–1073.15 K (Region 1), up to 80 MPa, 863.15 K–1073.15 K (Region 2).
+- **[2]** IAPWS G5-01(2020) — *Fundamental Constants*. CODATA 2018 constants, ITS-90 scale, VSMOW isotopic composition, critical and triple-point values.
+- **[3]** IAPWS SR2-01(2014) — *Revised Supplementary Release on Backward Equations p(h,s) for Regions 1 and 2*.
+- **[4]** IAPWS SR4-04(2014) — *Revised Supplementary Release on Backward Equations p(h,s) for Region 3, Boundary Equations, Tsat(h,s) for Region 4*.
+- **[5]** IAPWS SR5-05(2016) — *Revised Supplementary Release on Backward Equations v(p,T) for Region 3*. 26 subregions plus auxiliary equations near the critical point.
+- **[6]** IAPWS R6-95(2018) — *Revised Release on IAPWS-95 Formulation*. Fundamental Helmholtz free energy equation, ideal-gas and residual parts.
+
+### Transport Properties — IAPWS
+
+- **[7]** IAPWS R12-08(2008) — *Formulation 2008 for Viscosity of Ordinary Water Substance*.
+- **[8]** IAPWS R15-11(2011) — *Formulation 2011 for Thermal Conductivity of Ordinary Water Substance*.
+- **[9]** IAPWS R1-76(2014) — *Revised Release on Surface Tension of Ordinary Water Substance*.
+
+### Ice Ih (Solid Phase) — IAPWS
+
+- **[10]** IAPWS R10-06(2009) — *Revised Release on Equation of State 2006 for H₂O Ice Ih*. Gibbs energy EOS, T ∈ [0 K, 273.16 K], p ∈ [0 Pa, 210 MPa].
+- **[11]** IAPWS R14-08(2011) — *Revised Release on Pressure along Melting and Sublimation Curves*. Melting pressure for ice phases Ih, III, V, VI, VII; sublimation pressure for T ∈ [50 K, 273.16 K].
+
+### Dry Air
+
+- **[12]** Lemmon E.W., Jacobsen R.T., Penoncello S.G., Friend D.G. (2000) — *Thermodynamic Properties of Air and Mixtures of N₂, Ar, and O₂ from 60 to 2000 K at Pressures to 2000 MPa*. J. Phys. Chem. Ref. Data, Vol. 29, No. 3, p. 331.
+- **[13]** Lemmon E.W., Jacobsen R.T. (2004) — *Viscosity and Thermal Conductivity Equations for N₂, Ar, O₂, and Air*. J. Phys. Chem. Ref. Data, Vol. 33, No. 1, p. 309.
+
+### Humid Air — IAPWS
+
+- **[14]** IAPWS G11-15(2015) — *Guideline on Virial Equation for Fugacity of H₂O in Humid Air*.
+- **[15]** IAPWS G9-12(2012) — *Guideline on Low-Temperature Extension of IAPWS-95 for Water Vapor* (50 K–130 K).
+
+### Hydraulics (Duct / Pipe Flow)
+
+- **[HYD-1]** Lotfi Z., Loup J., Aouine B. (2019) — *Explicit solutions for turbulent flow friction factor: A review, assessment and approaches classification*. Ain Shams Engineering Journal, 10(4), 241–254. Includes Vatankhah (2014) approximation used for initial guess in the Colebrook-White solver.
+- **[HYD-2]** Mitosek M. (2001) — *Mechanika płynów w inżynierii i ochronie środowiska*. Polskie Wydawnictwo Naukowe PWN. Reynolds number, Darcy-Weisbach, minor losses, hydraulic diameter.
+- **[HYD-3]** Barnard R.W., Pearce K., Schovanec L. (2001) — *Inequalities for the Perimeter of an Ellipse*. Texas Tech University. Jacobsen (1985) rational approximation for ellipse perimeter.
+
+---
