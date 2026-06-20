@@ -1,0 +1,17 @@
+# Python dependencies for reproducing the Solar module evidence.
+# Tested with Python 3.13. Install into a throwaway virtual environment:
+#   python -m venv .venv && .venv/Scripts/activate   (Windows)
+#   python -m venv .venv && source .venv/bin/activate  (macOS / Linux)
+#   pip install -r requirements.txt
+#
+# ladybug-core      the Ladybug Tools sun engine (NREL based Sunpath). Computes
+#                   the reference sun positions and, with the ray vs box test in
+#                   ladybug_reference.py, the reference sun hours.
+# ladybug-geometry  geometry primitives ladybug-core depends on.
+# matplotlib        renders the evidence figure (lb_evidence_figure.py).
+# ifcopenshell      writes the test scene IFC (generate_box_ifc.py).
+
+ladybug-core==0.44.52
+ladybug-geometry
+matplotlib
+ifcopenshell

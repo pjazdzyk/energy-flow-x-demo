@@ -209,7 +209,7 @@ On top of the numbers, a **heatmap chart** sweeps a full dimension series at onc
 
 [<img src="assets/images/bim-ifc-lens.png" alt="IFC Lens in-browser BIM viewer" style="width:100%;">](https://energyflowx.com/cae-bim/ifc-lens)
 
-The viewer auto-detects the schema of each file and supports **IFC2x3, IFC4, and IFC4x3**, so models move between authoring tools, analysis software, and facility-management systems without lock-in. Below is what you can actually do once a model is open.
+The viewer auto-detects the schema of each file and supports **IFC2x3, IFC4, and IFC4x3**, so models move between authoring tools, analysis software, and facility-management systems without lock-in. It is also more than a viewer: it carries real analysis tools, site location on a map, a sun path and sun hours study, a wind screening, IDS and BCF, and an open validation report, all running on your device. Below is what you can actually do once a model is open.
 
 ### Loading and managing models
 
@@ -239,9 +239,25 @@ This is where the model starts talking. **Color by** IFC Class, Spatial storey, 
 
 IFC Lens reads first-class IFC system data (`IfcSystem`, `IfcDistributionSystem`, and the assignment links), so supply air, exhaust, chilled water, and electrical can each be coloured and isolated as the distinct systems they are. The Knowledge page even includes the Revit export checklist for the single most common reason MEP colouring shows nothing.
 
-### Measurement
+### Site location on a real-world map
 
-Five measurement modes run on the same client-side geometry, with smart snapping (green to a vertex, blue to an edge, orange to a face): **Distance** (with the angle to a snapped edge, flagging ⟂ 90° when square), **Area** (exact for any planar outline, concave shapes included), **Angle**, **Volume** (read from the IFC quantity, with a bounding-box fallback), and **Probe** for exact X/Y/Z coordinates relative to the elevation datum.
+The **Geo** tool places the model in the real world. It reads the georeference straight from the file, either the IfcSite latitude and longitude or an IfcMapConversion with a projected CRS, and falls back to an address search or pasted coordinates when a file carries none. With your consent it drapes an open basemap (OpenStreetMap tiles) and optional terrain relief directly under the model in the 3D view, oriented to true north, so the building sits in its actual surroundings. Everything that reveals a location stays behind an explicit opt-in, and the geometry still never leaves your device.
+
+### Solar, sun path and shadows
+
+The **Solar** tool casts a real sun over the model for the site and a chosen date. A draggable time-of-day scrubber and a play button sweep the day while the sun arc, a seasonal band, a horizon compass, and live hard shadows update as the sun moves. Glazing lets the sun through, exactly as a real window does.
+
+On top of the live shadow it computes **direct sun hours** over the whole day, painted as a heatmap on the ground and on building surfaces, with three readings: plain sun hours, an incidence-weighted exposure score for PV siting, and shade hours. A scoring mode bins the result into suitability tiers, and a compliance mode colours pass or fail against a minimum-hours threshold for right-to-light and overshadowing checks, with named building-code presets. You can read the exact value at any point by clicking, or paste a whole list of coordinates and have every point read and pinned at once. Cast shadows and terrain shadows are independent toggles, so you can study shadows or read a clean heatmap.
+
+The sun position uses the NOAA solar algorithm and the occlusion is ray traced. Both are recognized methods, and the output is validated openly (see Validation below).
+
+### Wind, CFD screening
+
+The **Wind** tool runs a fast 2D computational-fluid-dynamics screening of the wind field around the model on the GPU. Drive it with a logarithmic or power-law inlet profile tied to a Eurocode terrain category, or with your own measured points. It paints velocity and pressure on horizontal resolve planes and reads values at probe points, for an early read on shelter, funnelling, and exposure between buildings. It is a screening aid for orientation and massing, not a certification-grade solver.
+
+### Measurement and notes
+
+Five measurement modes run on the same client-side geometry, with smart snapping (green to a vertex, blue to an edge, orange to a face): **Distance** (with the angle to a snapped edge, flagging ⟂ 90° when square), **Area** (exact for any planar outline, concave shapes included), **Angle**, **Volume** (read from the IFC quantity, with a bounding-box fallback), and **Probe** for exact X/Y/Z coordinates relative to the elevation datum. You can also drop **pinned text notes** in the scene to mark up a model, and export them.
 
 ### IDS quality checking, with a builder
 
@@ -251,9 +267,13 @@ Five measurement modes run on the same client-side geometry, with smart snapping
 
 **BCF** (BIM Collaboration Format) is the buildingSMART standard for exchanging issues without sending the model. Author topics with a saved viewpoint, the involved elements, a snapshot, type, status, and priority, then export a `.bcfzip` that opens in Revit, Navisworks, Solibri, or BIMcollab. Open issues someone sent you, restore their exact viewpoint and selection, reply or change status, and export the reviewed file back. All of it in the browser.
 
+### Validation you can check yourself
+
+A dedicated **Validation** tab proves the analysis tools rather than asking you to trust them. The Solar module is validated three ways, each recomputed live in your browser on every visit: the sun position against NREL SPA published values and an independent ephemeris, the occlusion against a closed-form analytic shadow, and the end-to-end sun hours cross-checked against Ladybug Tools, a recognized open-source solar library, on a controlled scene. We are not trying to copy any one program, we implement the same accepted physics independently and show the answers land in the same place. The full reproduction, scene file, the read points as a CSV, the reference scripts, dependencies, and step-by-step instructions, is published in this repository under [validation-evidence](validation-evidence).
+
 ### Export, capture, and privacy
 
-Export a quantity takeoff to CSV scoped to the selection or the whole model, capture screenshots, and tune performance with the built-in guidance on pointing your browser at the dedicated GPU. Convenience preferences (colour palettes, section slices, BCF author name, auto-saved drafts) are kept locally per device and wiped in one click, while your model geometry never leaves your machine in the first place.
+Export a quantity takeoff to CSV scoped to the selection or the whole model, capture screenshots, **record the viewport to a WebM video** (with optional microphone narration), and tune performance with the built-in guidance on pointing your browser at the dedicated GPU. Convenience preferences (colour palettes, section slices, BCF author name, auto-saved drafts) are kept locally per device and wiped in one click, while your model geometry never leaves your machine in the first place.
 
 IFC Lens is built on the open-source [That Open Engine](https://github.com/ThatOpen/) BIM toolkit, the WebAssembly [web-ifc](https://github.com/ThatOpen/engine_web-ifc) parser, and Three.js, all gratefully acknowledged in the references below. The bundled demonstration model is the buildingSMART PCERT Sample Scene.
 
