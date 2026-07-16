@@ -80,6 +80,12 @@ nb-configuration.xml
 .code-workspace
 
 ##############################
+## AI agent tooling
+##############################
+# Local agent config/skills, not repo content (removed from user-manager for the same reason).
+.qwen/
+
+##############################
 ## OS X
 ##############################
 .DS_Store
