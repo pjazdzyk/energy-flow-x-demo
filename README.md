@@ -5,13 +5,13 @@
 > **Professional engineering calculations. From first principles to final numbers.**
 > Bridge complex thermodynamic theory and daily engineering practice. Validated, accurate, content-rich, fast, and unit-flexible.
 
-**EnergyFlowX** is a professional-grade web platform for thermophysical property analysis, HVAC process design, and fluid mechanics. It is built for HVAC/MEP engineers, mechanical engineers, and chemical/process engineers who need precise, standards-based numbers and would rather not assume that specific heat is a constant.
+**EnergyFlowX** is a professional-grade web platform for thermophysical property analysis, HVAC process design, fluid mechanics, and browser-native BIM and solar analysis. It is built for HVAC/MEP engineers, mechanical engineers, chemical and process engineers, and the BIM coordinators and PV designers who work alongside them, everyone who needs precise, standards-based numbers and would rather not assume that specific heat is a constant.
 
 | | |
 |---|---|
-| **Applications** | 32 |
-| **Categories** | 5 |
-| **Last update** | 2026.06 |
+| **Applications** | 41 |
+| **Categories** | 7 |
+| **Last update** | 2026.09 |
 | **Website** | [energyflowx.com](https://energyflowx.com) |
 
 [![Go to EnergyFlowX](https://img.shields.io/badge/VISIT-energyflowx.com-13ADF3?style=for-the-badge)](https://energyflowx.com)
@@ -20,7 +20,7 @@ This is not "_just another psychrometrics calculator_". It is a comprehensive en
 
 To readers unfamiliar with fluid mechanics and thermodynamics, the calculation forms may look deceptively simple. Trust me, there is nothing simple here once you look behind the curtain.
 
-**No fluid parameter is treated as a constant.** Density, specific heat, viscosity, conductivity, every temperature- and pressure-dependent property is computed from first-principles equations sourced from international standards (IAPWS, ISO, EN, ASHRAE), peer-reviewed literature, or formulations derived independently. The full reference list lives at the end of this document.
+**No fluid parameter is treated as a constant.** Density, specific heat, viscosity, conductivity, every temperature- and pressure-dependent property is computed from first-principles equations sourced from international standards (IAPWS, ISO, EN, IEC), peer-reviewed literature, or formulations derived independently. The full reference list lives at the end of this document.
 
 [<img src="assets/images/homepage-view.png" alt="EnergyFlowX workspace launchpad" style="width:100%;">](https://energyflowx.com)
 
@@ -33,21 +33,24 @@ To readers unfamiliar with fluid mechanics and thermodynamics, the calculation f
 3. [Fluids we support](#3-fluids-we-support)
 4. [HVAC processes](#4-hvac-processes)
 5. [Hydraulics, duct and pipe sizing](#5-hydraulics-duct-and-pipe-sizing)
-6. [CAE-BIM, the IFC Lens](#6-cae-bim-the-ifc-lens)
-7. [Property tables and data tools](#7-property-tables-and-data-tools)
-8. [Knowledge, the documentation engineers actually read](#8-knowledge-the-documentation-engineers-actually-read)
-9. [Units and flexibility](#9-units-and-flexibility)
-10. [Designed for mobile, friendly for wide](#10-designed-for-mobile-friendly-for-wide)
-11. [The engine room, dedicated libraries](#11-the-engine-room-dedicated-libraries)
-12. [Engineering practices and numerical methods](#12-engineering-practices-and-numerical-methods)
-13. [Architecture and technology](#13-architecture-and-technology)
-14. [Security and privacy](#14-security-and-privacy)
-15. [Access tiers](#15-access-tiers)
-16. [The numbers are computed, not generated](#16-the-numbers-are-computed-not-generated)
-17. [Licensing, citation, and attribution](#17-licensing-citation-and-attribution)
-18. [Feedback and bug reporting](#18-feedback-and-bug-reporting)
-19. [Acknowledgments](#19-acknowledgments)
-20. [Reference sources](#20-reference-sources)
+6. [IFC Lens, BIM in the browser](#6-ifc-lens-bim-in-the-browser)
+7. [Elements, the 3D design workspace](#7-elements-the-3d-design-workspace)
+8. [The MCP server, EFX inside your AI assistant](#8-the-mcp-server-efx-inside-your-ai-assistant)
+9. [Property tables and data tools](#9-property-tables-and-data-tools)
+10. [Knowledge, the documentation engineers actually read](#10-knowledge-the-documentation-engineers-actually-read)
+11. [Units and flexibility](#11-units-and-flexibility)
+12. [Designed for mobile, friendly for wide](#12-designed-for-mobile-friendly-for-wide)
+13. [Hydronic, what is being built next](#13-hydronic-what-is-being-built-next)
+14. [The engine room, dedicated libraries](#14-the-engine-room-dedicated-libraries)
+15. [Engineering practices and numerical methods](#15-engineering-practices-and-numerical-methods)
+16. [Architecture and technology](#16-architecture-and-technology)
+17. [Security and privacy](#17-security-and-privacy)
+18. [Access tiers](#18-access-tiers)
+19. [The numbers are computed, not generated](#19-the-numbers-are-computed-not-generated)
+20. [Licensing, citation, and attribution](#20-licensing-citation-and-attribution)
+21. [Feedback and bug reporting](#21-feedback-and-bug-reporting)
+22. [Acknowledgments](#22-acknowledgments)
+23. [Reference sources](#23-reference-sources)
 
 ---
 
@@ -79,13 +82,13 @@ EnergyFlowX is built around six promises, and every calculator in the suite is h
 - **Independently developed.** Built strictly on science and engineering best practice, with no industrial or commercial influence pulling the numbers.
 - **Actively maintained.** Continuously refined, with ongoing improvements, validation updates, and performance work driven by new findings and your feedback.
 
-Each result also ships with a built-in **validation report**, a benchmark of the engine output against reference data, so you can see the agreement instead of taking it on faith.
+Each result also ships with a built-in **validation report**, a benchmark of the engine output against reference data, so you can see the agreement instead of taking it on faith. On the BIM side the same principle goes one step further: the solar validation recomputes in your browser on every visit, and the full reproduction is published in this repository for anyone who wants to run it themselves.
 
 ---
 
 ## 3. FLUIDS WE SUPPORT
 
-EnergyFlowX models **23 fluids across 7 engineering groups**, plus solid-phase ice. Each one returns a full thermodynamic and transport property set, with no constant-property shortcuts. The chemistry is real, the equations of state are reference-grade, and the validity ranges are stated openly.
+EnergyFlowX models **29 fluids across 8 engineering groups**, plus solid-phase ice. Each one returns a full thermodynamic and transport property set, with no constant-property shortcuts. The chemistry is real, the equations of state are reference-grade, and the validity ranges are stated openly.
 
 [<img src="assets/images/natural-gas.png" alt="Natural Gas properties calculator" style="width:100%;">](https://energyflowx.com/fluid-properties/natural-gas/natural-gas)
 
@@ -93,7 +96,7 @@ EnergyFlowX models **23 fluids across 7 engineering groups**, plus solid-phase i
 
 | Fluid | Model | Validity | Access |
 |---|---|---|---|
-| Humid Air | Humid-air mixture model (IAPWS-IF97 water side, Lemmon dry-air EOS, G11-15 virial closure) | −80 to 200 °C, 10 Pa to 5 MPa | Free |
+| Humid Air | Humid-air mixture model (IAPWS-IF97 water side, Lemmon dry-air EOS, G11-15 virial closure) | −80 to 200 °C, 10 kPa to 5 MPa | Free |
 | Dry Air | Lemmon Helmholtz EOS | wide range | Free |
 
 Humid air covers vapour saturation pressure, dew point and wet bulb temperatures, relative humidity, humidity ratio and maximum humidity ratio, specific enthalpy (including water-mist and ice-mist components), density, specific heat, viscosity, thermal conductivity, thermal diffusivity, and Prandtl number, with enhanced fugacity per IAPWS G11-15.
@@ -107,7 +110,7 @@ Humid air covers vapour saturation pressure, dew point and wet bulb temperatures
 
 Density, enthalpy, entropy, specific heat (Cp, Cv), speed of sound, isothermal compressibility, thermal expansion, viscosity, thermal conductivity, and surface tension, across compressed liquid, superheated vapour, near-critical, two-phase, and high-pressure regions.
 
-### Natural Gas `NEW`
+### Natural Gas
 
 | Fluid | Model | Output | Access |
 |---|---|---|---|
@@ -115,7 +118,7 @@ Density, enthalpy, entropy, specific heat (Cp, Cv), speed of sound, isothermal c
 
 A multi-fluid Helmholtz equation of state for mixtures of up to 21 components, with composition presets or a fully custom blend.
 
-### Process Gases `NEW`
+### Process Gases
 
 | Fluid | Formula | Model | Validity | Access |
 |---|---|---|---|---|
@@ -123,30 +126,47 @@ A multi-fluid Helmholtz equation of state for mixtures of up to 21 components, w
 | Carbon Dioxide | CO₂ (R-744) | Span-Wagner EOS | −57 to 827 °C, ≤ 200 MPa | Free |
 | Ammonia | NH₃ (R-717) | Helmholtz EOS | −78 to 407 °C, ≤ 50 MPa | Free |
 | Propane | C₃H₈ (R-290) | Helmholtz EOS | −188 to 352 °C, ≤ 100 MPa | Free |
+| Nitrous Oxide `NEW` | N₂O (R-744A) | Helmholtz EOS, ECS transport | −91 to 252 °C, ≤ 50 MPa | Free |
 
-### Refrigerants `NEW`
+### Cryogens `NEW`
+
+The gases that industry handles cold and liquid, each on its own reference equation of state rather than on one correlation stretched across the group. Air separation, LNG, cryogenic storage and low-temperature test rigs all live down here, and this is exactly the region where an ideal-gas shortcut stops being an approximation and starts being wrong.
+
+| Fluid | Formula | Model | Validity | Access |
+|---|---|---|---|---|
+| Nitrogen | N₂ | Span et al. reference EOS | −210 to 727 °C, ≤ 2200 MPa | Free |
+| Oxygen | O₂ | Schmidt-Wagner reference EOS | −219 to 727 °C, ≤ 82 MPa | Free |
+| Argon | Ar | Tegeler-Span-Wagner reference EOS | −189 to 427 °C, ≤ 1000 MPa | Free |
+| Helium | He | Ortiz-Vega et al. EOS | −271 to 1227 °C, ≤ 1000 MPa | Free |
+| Methane | CH₄ | Setzmann-Wagner reference EOS, LNG | −182 to 352 °C, ≤ 100 MPa | Free |
+
+Helium is modelled as normal-fluid helium I only. Below the lambda point at about 2.18 K the substance becomes a superfluid that this equation does not describe, and the calculator stops there rather than extrapolating into it.
+
+### Refrigerants
 
 Eight working fluids, pure and blended, identified by standardised R-numbers, with ISO 817 safety classification surfaced alongside the physics.
 
-| Fluid | Composition | Model | Access |
-|---|---|---|---|
-| R-134a | C₂H₂F₄ | Helmholtz EOS | Member |
-| R-1234ze(E) | C₃H₂F₄ | Helmholtz EOS | Member |
-| R-1234yf | C₃H₂F₄ | Helmholtz EOS | Member |
-| R-32 | CH₂F₂ | Helmholtz EOS | Member |
-| R-125 | C₂HF₅ | Helmholtz EOS | Member |
-| R-410A | R-32 / R-125 | Multi-fluid Helmholtz (blend) | Member |
-| R-407C | R-32 / R-125 / R-134a | Multi-fluid Helmholtz (blend) | Member |
-| R-454B | R-32 / R-1234yf | Multi-fluid Helmholtz (blend) | Member |
+| Fluid | Composition | Model | Validity | Access |
+|---|---|---|---|---|
+| R-134a | C₂H₂F₄ | Helmholtz EOS | −103 to 182 °C, ≤ 40 MPa | Member |
+| R-1234ze(E) | C₃H₂F₄ | Helmholtz EOS | −104 to 147 °C, ≤ 100 MPa | Member |
+| R-1234yf | C₃H₂F₄ | Helmholtz EOS | −53 to 137 °C, ≤ 30 MPa | Member |
+| R-32 | CH₂F₂ | Helmholtz EOS | −23 to 147 °C, ≤ 30 MPa | Member |
+| R-125 | C₂HF₅ | Helmholtz EOS | −43 to 167 °C, ≤ 20 MPa | Member |
+| R-410A | R-32 / R-125 | Multi-fluid Helmholtz (blend) | −73 to 147 °C, ≤ 35 MPa | Member |
+| R-407C | R-32 / R-125 / R-134a | Multi-fluid Helmholtz (blend) | −73 to 147 °C, ≤ 35 MPa | Member |
+| R-454B | R-32 / R-1234yf | Multi-fluid Helmholtz (blend) | −73 to 147 °C, ≤ 35 MPa | Member |
 
-### Glycols `NEW`
+The blends are solved as real mixtures, so the temperature glide across the dome is computed rather than ignored, and bubble and dew points are separate numbers.
+
+### Glycols
 
 | Fluid | Model | Validity | Access |
 |---|---|---|---|
 | Ethylene Glycol | Aqueous-solution model | freezing point to 100 °C, 0 to 60 % mass | Free |
 | Propylene Glycol | Aqueous-solution model | freezing point to 100 °C, 0 to 60 % mass | Free |
 
-### Brines `NEW`
+### Brines
 
 | Fluid | Model | Validity | Access |
 |---|---|---|---|
@@ -163,11 +183,13 @@ Concentration-dependent freezing-point limits are built in, so the model knows w
 |---|---|---|---|
 | Ice (Ice Ih) | Gibbs energy EOS, IAPWS R10-06 | Density, enthalpy, entropy, heat capacity, compressibility, thermal expansion, melting and sublimation curves | Free |
 
+Every group has its own tab in the [validation report](https://energyflowx.com/reports/validation), where the engine is run against published reference points and the agreement is shown property by property.
+
 ---
 
 ## 4. HVAC PROCESSES
 
-Beyond raw properties, EnergyFlowX computes the processes engineers actually design around. Every process uses real humid-air thermodynamics, not constant-property approximations, and reports the full state of every air stream involved.
+Beyond raw properties, EnergyFlowX computes the processes engineers actually design around. Every process uses real humid-air thermodynamics, not constant-property approximations, and reports the full state of every air stream involved. All four are **free**, with no account required.
 
 [<img src="assets/images/hvac-process-hr-recovery.png" alt="AHU heat recovery process calculator" style="width:100%;">](https://energyflowx.com/hvac-processes/heat-recovery)
 
@@ -189,7 +211,7 @@ The hydraulics suite sizes ventilation ducts and piping against real fluid prope
 
 [<img src="assets/images/hydraulics-ducts.png" alt="Duct sizing calculator with heatmap" style="width:100%;">](https://energyflowx.com/hydraulics/duct-sizing-calculator)
 
-**Duct Sizing** (Free) and **Pipe Sizing** `NEW` (Member) share a multi-criteria sizing engine that is a genuinely rare animal on the market. Most sizing tools force a choice: either a fixed catalogue from one manufacturer, or a generic table, or a standard's nominal series. EnergyFlowX puts **manufacturer data, standard series, and generic geometry into one flexible, universal sizing tool**, switchable on the fly. To the best of our knowledge no other tool does all three in a single calculator. It handles:
+**Duct Sizing** and **Pipe Sizing** (both free) share a multi-criteria sizing engine that is a genuinely rare animal on the market. Most sizing tools force a choice: either a fixed catalogue from one manufacturer, or a generic table, or a standard's nominal series. EnergyFlowX puts **manufacturer data, standard series, and generic geometry into one flexible, universal sizing tool**, switchable on the fly. To the best of our knowledge no other tool does all three in a single calculator. It handles:
 
 - Circular and rectangular cross-sections,
 - Flow velocity and Reynolds number,
@@ -203,21 +225,27 @@ On top of the numbers, a **heatmap chart** sweeps a full dimension series at onc
 
 ---
 
-## 6. CAE-BIM, THE IFC LENS
+## 6. IFC LENS, BIM IN THE BROWSER
 
-**IFC Lens** `NEW` (Free) is a full in-browser IFC model viewer, and it is far more than a spinning 3D model. It opens Industry Foundation Classes building models, the open, vendor-neutral BIM exchange standard maintained by buildingSMART, and parses and renders them **entirely on your device** with WebAssembly and WebGL. Nothing is ever uploaded to a server, which keeps your design data private and removes the bandwidth limits that plague cloud viewers on large files.
+**IFC Lens** (Free) is a full in-browser IFC model viewer, and it is far more than a spinning 3D model. It opens Industry Foundation Classes building models, the open, vendor-neutral BIM exchange standard maintained by buildingSMART, and parses and renders them **entirely on your device** with WebAssembly and WebGL. Nothing is ever uploaded to a server, which keeps your design data private and removes the bandwidth limits that plague cloud viewers on large files.
 
-[<img src="assets/images/bim-ifc-lens.png" alt="IFC Lens in-browser BIM viewer" style="width:100%;">](https://energyflowx.com/cae-bim/ifc-lens)
+[<img src="assets/images/lens-what.webp" alt="IFC Lens with an IFC building model open in a browser tab, the Models panel listing the loaded file and its element count." style="width:100%;">](https://energyflowx.com/ifc-lens)
 
-The viewer auto-detects the schema of each file and supports **IFC2x3, IFC4, and IFC4x3**, so models move between authoring tools, analysis software, and facility-management systems without lock-in. It is also more than a viewer: it carries real analysis tools, site location on a map, a sun path and sun hours study, a wind screening, IDS and BCF, and an open validation report, all running on your device. Below is what you can actually do once a model is open.
+*A 10.3 MB IFC file with 676 elements, parsed inside the browser tab. The Models panel keeps IFC models, imported CAD and mesh files, Modeler solids, vegetation and OpenStreetMap surroundings as separate layers, each with its own visibility.*
+
+The viewer auto-detects the schema of each file and supports **IFC2x3, IFC4, and IFC4x3**, so models move between authoring tools, analysis software, and facility-management systems without lock-in. Alongside IFC it reads **STEP and STP** CAD parts, which arrive as editable B-rep solids rather than frozen meshes, and the **GLB, glTF, OBJ and STL** mesh formats. Everything you open lands in one inventory, grouped by what it is rather than by when it arrived, and several IFC models can be overlaid as separate disciplines without ever merging the files.
 
 ### Loading and managing models
 
-Drag one or more `.ifc` files onto the viewport, or load them from the toolbar. Multiple models live side by side, each listed with its element count and size, and each can be shown, hidden, or unloaded independently. No files of your own? A built-in set of discipline samples (architecture, structure, HVAC and more) loads in a click, so the tool is useful from the very first second.
+Drag one or more files onto the viewport, or load them from the toolbar. Multiple models live side by side, each listed with its element count and size, and each can be shown, hidden, or unloaded independently. No files of your own? A built-in set of discipline samples (architecture, structure, HVAC and more) loads in a click, so the tool is useful from the very first second.
 
 ### Structure tree, properties, and search
 
 The structure panel browses the model two ways: **Spatial** groups elements by the storey they sit in (the *where*), and **Class** groups them by IFC entity type such as WALL or SLAB (the *what*), each with a live filter. Select any element to frame it and read its full property sets (Psets) and quantities, with copy buttons and an adjustable significant-digits readout. The search box accepts a numeric expressID or a 22-character IFC GlobalId, and on a hit it frames the element and turns the rest of the model to x-ray so an internal component stays visible.
+
+[<img src="assets/images/lens-inspect.webp" alt="The Properties panel showing an element's IFC property sets and its quantity table, beside the CSV takeoff export dialog." style="width:100%;">](https://energyflowx.com/ifc-lens/knowledge/properties)
+
+*Property sets and quantity sets are shown exactly as the file carries them, original names and all, with no re-interpretation. The takeoff exports either the current selection or the whole model to CSV, with the column set and the precision you choose.*
 
 ### Navigation and standard views
 
@@ -235,61 +263,164 @@ Three independent ways to cut the model:
 
 This is where the model starts talking. **Color by** IFC Class, Spatial storey, MEP System, IFC Property, Quantity, by model, or by selected GUID/ID. Rule-driven sources share one workflow: pick a value present in the model, or type a wildcard with `*` (for example `IFCWALL*` or `*SUPPLYAIR*`), first matching rule wins, anything unmatched falls into **Other**. Numeric properties and quantities colour by value ranges. In the legend you recolour swatches, set per-group opacity, or exclude a group so it keeps its native material. Each **Apply** snapshots the legend as a reusable **layer**, and layers coexist so you can stack, for instance, a class colouring under a system colouring. Paste the GUIDs from a clash report and spotlight the offenders against the rest of the model in seconds.
 
+Colouring is also the fastest way to find what a model is *missing*. Colour by a property that half the elements do not carry and the gap appears as a block of **Other**, which is a far more honest answer than a schedule full of empty cells.
+
 ### MEP systems awareness
 
-IFC Lens reads first-class IFC system data (`IfcSystem`, `IfcDistributionSystem`, and the assignment links), so supply air, exhaust, chilled water, and electrical can each be coloured and isolated as the distinct systems they are. The Knowledge page even includes the Revit export checklist for the single most common reason MEP colouring shows nothing.
+IFC Lens reads first-class IFC system data (`IfcSystem`, `IfcDistributionSystem`, and the assignment links), so supply air, exhaust, chilled water, and electrical can each be coloured and isolated as the distinct systems they are. The Knowledge pages even include the Revit export checklist for the single most common reason MEP colouring shows nothing.
 
-### Site location on a real-world map
+### Site, terrain and surroundings
 
-The **Geo** tool places the model in the real world. It reads the georeference straight from the file, either the IfcSite latitude and longitude or an IfcMapConversion with a projected CRS, and falls back to an address search or pasted coordinates when a file carries none. With your consent it drapes an open basemap (OpenStreetMap tiles) and optional terrain relief directly under the model in the 3D view, oriented to true north, so the building sits in its actual surroundings. Everything that reveals a location stays behind an explicit opt-in, and the geometry still never leaves your device.
+The **Geo** tool places the model in the real world. It reads the georeference straight from the file, either the IfcSite latitude and longitude or an IfcMapConversion with a projected CRS, and falls back to an address search or pasted coordinates when a file carries none. With your consent it drapes an open basemap (OpenStreetMap tiles) and, where one exists, a real **terrain model** under the building, oriented to true north, so the site sits at its actual elevation rather than on a flat plane.
 
-### Solar, sun path and shadows
+The same tool imports the **surroundings**: neighbouring buildings and street trees within a radius you choose, from OpenStreetMap or from 3D city files. A **DXF drawing or a scanned image** can be aligned underneath by two known points or a known distance, which is how a survey or an old plan becomes a tracing underlay. Everything that reveals a location stays behind an explicit opt-in, and the geometry still never leaves your device.
 
-The **Solar** tool casts a real sun over the model for the site and a chosen date. A draggable time-of-day scrubber and a play button sweep the day while the sun arc, a seasonal band, a horizon compass, and live hard shadows update as the sun moves. Glazing lets the sun through, exactly as a real window does.
+[<img src="assets/images/lens-context.webp" alt="A model placed on an OpenStreetMap basemap, with several hundred surrounding buildings and street trees imported around it." style="width:100%;">](https://energyflowx.com/ifc-lens/knowledge/site-context)
 
-On top of the live shadow it computes **direct sun hours** over the whole day, painted as a heatmap on the ground and on building surfaces, with three readings: plain sun hours, an incidence-weighted exposure score for PV siting, and shade hours. A scoring mode bins the result into suitability tiers, and a compliance mode colours pass or fail against a minimum-hours threshold for right-to-light and overshadowing checks, with named building-code presets. You can read the exact value at any point by clicking, or paste a whole list of coordinates and have every point read and pinned at once. Cast shadows and terrain shadows are independent toggles, so you can study shadows or read a clean heatmap.
-
-The sun position uses the NOAA solar algorithm and the occlusion is ray traced. Both are recognized methods, and the output is validated openly (see Validation below).
-
-### Wind, CFD screening
-
-The **Wind** tool runs a fast 2D computational-fluid-dynamics screening of the wind field around the model on the GPU. Drive it with a logarithmic or power-law inlet profile tied to a Eurocode terrain category, or with your own measured points. It paints velocity and pressure on horizontal resolve planes and reads values at probe points, for an early read on shelter, funnelling, and exposure between buildings. It is a screening aid for orientation and massing, not a certification-grade solver.
+*Surroundings imported within a chosen radius, here 666 buildings and 415 trees. In Elements this same context is what casts shadows onto the model and obstructs the wind field. Map data © OpenStreetMap contributors, ODbL.*
 
 ### Measurement and notes
 
-Five measurement modes run on the same client-side geometry, with smart snapping (green to a vertex, blue to an edge, orange to a face): **Distance** (with the angle to a snapped edge, flagging ⟂ 90° when square), **Area** (exact for any planar outline, concave shapes included), **Angle**, **Volume** (read from the IFC quantity, with a bounding-box fallback), and **Probe** for exact X/Y/Z coordinates relative to the elevation datum. You can also drop **pinned text notes** in the scene to mark up a model, and export them.
+Five measurement modes run on the same client-side geometry, with smart snapping (green to a vertex, blue to an edge, orange to a face): **Distance** (with the angle to a snapped edge, flagging ⟂ 90° when square), **Area** (exact for any planar outline, concave shapes included), **Angle**, **Volume** (read from the IFC quantity, with a bounding-box fallback), and **Probe** for exact X/Y/Z coordinates relative to the elevation datum.
+
+[<img src="assets/images/lens-measure.webp" alt="Several measurements taken on a model at once: a distance, a polygon area, an angle, a bounding volume and a probed point coordinate." style="width:100%;">](https://energyflowx.com/ifc-lens/knowledge/measuring)
+
+*Distance, area, angle, volume and point-coordinate probes, each snapped to real model geometry rather than to whatever the cursor happens to be over. Measurements persist together, so a set can be read side by side.*
 
 ### IDS quality checking, with a builder
 
 **IDS** (Information Delivery Specification) is the buildingSMART standard for machine-readable model requirements, for example "every wall must carry a fire rating". Load an `.ids` file and every rule reports its applicable, pass, and fail counts. Expand a failed rule to see each failing element with the exact reason, click to frame it, highlight all failures in red, and download a Markdown or HTML report with model metadata and a timestamp. The bundled **IDS Builder** goes the other way: author specifications with autocomplete from the model's real classes and Psets, test them live against the loaded model, and export a valid `.ids` file.
 
+[<img src="assets/images/lens-ids-bcf.webp" alt="The IDS builder editing a specification: an entity applicability facet on IFCWALL, and a required Name attribute matching a regular expression." style="width:100%;">](https://energyflowx.com/ifc-lens/knowledge/ids-and-bcf)
+
+*Authoring a buildingSMART IDS specification against the open model. Applicability and requirement facets autocomplete from what the model actually contains, and the specification can be tested against it before the `.ids` file is exported.*
+
 ### BCF issue coordination
 
 **BCF** (BIM Collaboration Format) is the buildingSMART standard for exchanging issues without sending the model. Author topics with a saved viewpoint, the involved elements, a snapshot, type, status, and priority, then export a `.bcfzip` that opens in Revit, Navisworks, Solibri, or BIMcollab. Open issues someone sent you, restore their exact viewpoint and selection, reply or change status, and export the reviewed file back. All of it in the browser.
 
-### Validation you can check yourself
+### Projects, notes, and getting the work back out
 
-A dedicated **Validation** tab proves the analysis tools rather than asking you to trust them. The Solar module is validated three ways, each recomputed live in your browser on every visit: the sun position against NREL SPA published values and an independent ephemeris, the occlusion against a closed-form analytic shadow, and the end-to-end sun hours cross-checked against Ladybug Tools, a recognized open-source solar library, on a controlled scene. We are not trying to copy any one program, we implement the same accepted physics independently and show the answers land in the same place. The full reproduction, scene file, the read points as a CSV, the reference scripts, dependencies, and step-by-step instructions, is published in this repository under [validation-evidence](validation-evidence).
+A session is not something you should have to rebuild every morning. Models, notes, measurements and view state save into a single **project file**, and a *Save with models embedded* option carries the model bytes along, so the project opens on another machine with nothing else to send. **Notes** are pinned in the scene where the finding is, so they keep their place as the camera moves, and they export as BCF 2.1, which is how a note made here becomes an issue in somebody else's tool.
 
-### Export, capture, and privacy
+[<img src="assets/images/lens-work.webp" alt="A finding pinned to the model as an in-scene note, beside the colourise legend and the BCF issue panel it can be exported to." style="width:100%;">](https://energyflowx.com/ifc-lens/knowledge/projects-and-notes)
 
-Export a quantity takeoff to CSV scoped to the selection or the whole model, capture screenshots, **record the viewport to a WebM video** (with optional microphone narration), and tune performance with the built-in guidance on pointing your browser at the dedicated GPU. Convenience preferences (colour palettes, section slices, BCF author name, auto-saved drafts) are kept locally per device and wiped in one click, while your model geometry never leaves your machine in the first place.
+*A pinned note, the colourise legend that produced the view, and the BCF panel the finding leaves through. A BCF issue carries a viewpoint, a camera position, a snapshot and the elements concerned, not just a comment.*
+
+On the way out there is a quantity takeoff to CSV scoped to the selection or the whole model, geometry export back to **GLB, OBJ and STL**, screenshots, and a **viewport recorder** that captures the 3D view to a WebM video with optional microphone narration.
+
+### Shortcuts, and using the right GPU
+
+Every command has a keyboard shortcut, the full list is documented, and the bindings can be remapped with conflict detection. There is also a page for a problem nobody warns you about: a laptop with two graphics adapters will happily run a WebGL viewer on the integrated one. The browser and operating-system settings that move it to the dedicated GPU are written down, because that single switch is usually worth more than any amount of tuning.
+
+### The manual has thirteen addresses
+
+The IFC Lens and Elements manual is not a dialog buried inside the app. It is a published documentation cluster of **thirteen topic pages** under two hubs, [`/ifc-lens/knowledge`](https://energyflowx.com/ifc-lens/knowledge) and [`/elements/knowledge`](https://energyflowx.com/elements/knowledge), covering formats, properties and takeoff, measuring and sectioning, IDS and BCF, site and context, projects and notes, shortcuts and performance, and on the Elements side solar, weather, wind, PV yield, trees and the modeller. Every one of them is a real URL you can send to a colleague.
 
 IFC Lens is built on the open-source [That Open Engine](https://github.com/ThatOpen/) BIM toolkit, the WebAssembly [web-ifc](https://github.com/ThatOpen/engine_web-ifc) parser, and Three.js, all gratefully acknowledged in the references below. The bundled demonstration model is the buildingSMART PCERT Sample Scene.
 
 ---
 
-## 7. PROPERTY TABLES AND DATA TOOLS
+## 7. ELEMENTS, THE 3D DESIGN WORKSPACE
+
+**Elements** `NEW` is the analysis and authoring half of the BIM stack, sharing the same scene, the same models and the same on-device privacy as IFC Lens. Where the viewer *reads* a building, Elements puts it somewhere real, on a date, under a sun and in a wind, and lets you author the geometry that is not in the file yet. Entry is free and the studies run on your machine. The measured-weather download and the photovoltaic yield model are the two members-only pieces, gated inside their panels and enforced server-side.
+
+[<img src="assets/images/el-what.webp" alt="An IFC building shaded by a sun-hours heatmap, with the sun path arc overhead and probe readings on several facades." style="width:100%;">](https://energyflowx.com/elements)
+
+*Sun hours computed on the model's own surfaces over a chosen day or a whole year, read against a 0 to 13 hour scale. Probe points return the value at an exact coordinate, so a facade or a single window can be checked rather than eyeballed.*
+
+### Weather, a real year instead of an assumption
+
+A study can run on clear-sky physics alone, which is the right answer when you want the *potential* of a site and have no data at all. To move from potential to an expectation for a real place, Elements downloads a measured **typical meteorological year** for the site coordinates, or parses an **EPW** file you already have. The Knowledge page is explicit about what each dataset does and does not tell you, because a TMY is a synthesised representative year rather than a forecast, and treating it as one is how a yield study quietly goes wrong.
+
+### Sun path, shadows and sun hours
+
+The **Solar** tool casts a real sun over the model for the site and a chosen date. A draggable time-of-day scrubber and a play button sweep the day while the sun arc, a seasonal band, a horizon compass, and live hard shadows update as the sun moves. Glazing lets the sun through, exactly as a real window does.
+
+On top of the live shadow it computes **direct sun hours** over the whole day, painted as a heatmap on the ground and on building surfaces, with three readings: plain sun hours, an incidence-weighted exposure score for PV siting, and shade hours. A scoring mode bins the result into suitability tiers, and a compliance mode colours pass or fail against a minimum-hours threshold for right-to-light and overshadowing checks, with named building-code presets. You can read the exact value at any point by clicking, or paste a whole list of coordinates and have every point read and pinned at once.
+
+The sun position uses the NOAA solar algorithm and the occlusion is ray traced. Both are recognised methods, and the output is validated openly.
+
+[<img src="assets/images/el-solar.webp" alt="A district-scale sun-hours study, the heatmap covering the terrain, the model and the surrounding buildings alike." style="width:100%;">](https://energyflowx.com/elements/knowledge/solar)
+
+*The same study at district scale, with terrain, building and surroundings all carrying the heatmap. Neighbouring blocks shade each other, which is the whole reason the context is loaded in the first place.*
+
+### Photovoltaic yield, through to LCOE
+
+Lay photovoltaic arrays on a roof, on a facade or on the ground, and Elements takes them the whole way from irradiance to a bankable number. A clear-sky or measured-weather irradiance source feeds a **plane-of-array transposition** (isotropic Liu and Jordan, or the Perez anisotropic model with its circumsolar and horizon terms), passes through a cover-glass **incidence-angle modifier**, and meets the beam, diffuse and string-mismatch **shading** cast by the geometry that is actually in the scene. Cell temperature, inverter clipping and the system loss budget turn irradiation into AC energy, and degradation, a P50/P90 band and a discounted cash flow turn AC energy into money.
+
+A **self-shading tilt and azimuth optimiser** searches the orientation for you, respecting row-to-row shading rather than pretending it away. Fixed and single-axis tracking mountings are both supported, backtracking included.
+
+[<img src="assets/images/el-pv.webp" alt="Three photovoltaic arrays laid out on a roof and on the ground, with the yield and financial results for the selected array." style="width:100%;">](https://energyflowx.com/elements/knowledge/pv)
+
+*Array layout with a self-shading tilt and azimuth optimiser, here 42 degrees facing due south. Results carry AC energy, specific yield, performance ratio, operating cell temperature, P50 and P90, LCOE, payback, NPV and IRR, and export to CSV or PDF.*
+
+### Wind, screening-level
+
+The **Wind** tool solves a **D3Q19 lattice-Boltzmann** flow field with large-eddy turbulence around the model, live on the GPU. Drive it with a points, logarithmic or Eurocode terrain-category inlet profile, or with your own measured data. It paints velocity and pressure on resolve planes and reads values at probe points, for an early read on shelter, funnelling, and exposure between buildings.
+
+It is honest about its scope. The solution runs on a thin slab at a capped Reynolds number, and the Knowledge page names the canonical benchmarks the solver is checked against and states plainly where the line sits between a validated solver and a design-grade wind study. This is a screening aid for orientation and massing, not a certification.
+
+[<img src="assets/images/el-wind.webp" alt="A vertical slice through a wind field around a site, coloured by speed, with the logarithmic inlet profile plotted beside it." style="width:100%;">](https://energyflowx.com/elements/knowledge/wind)
+
+*A lattice-Boltzmann flow field solved live on the GPU. The inlet here is a logarithmic profile, 10 m/s at 10 m reference height over a 0.05 m roughness length.*
+
+### Trees that shade like trees
+
+Vegetation is not scenery in a solar study. Trees are modelled as **partial occluders**, with Beer-Lambert attenuation through an ellipsoidal crown and a leaf-density knob that sets its transmittance, so a canopy dims the sun rather than switching it off. A seasonal blend thins a deciduous crown through the year. Place trees singly, fill them into a shape, run them along a boundary or drop them onto a face, and the shade they cast reaches both the sun-hours bake and the PV ray-trace.
+
+[<img src="assets/images/el-veg.webp" alt="Trees placed around a building by area fill and along a boundary line, with the vegetation panel showing species and crown dimensions." style="width:100%;">](https://energyflowx.com/elements/knowledge/vegetation)
+
+*Trees placed singly, filled into a shape, run along a boundary or dropped onto a face, here 95 of them. Species, age, trunk and crown dimensions and leaf density all feed the shade they cast.*
+
+### The Modeler, B-rep CAD in a browser tab
+
+Some of what a study needs is never in the IFC file: a proposed extension, a neighbouring block that has not been built yet, a screen, a canopy. The **Modeler** authors it as true **B-rep** geometry rather than meshes, running an Open CASCADE Technology kernel compiled to WebAssembly in a worker thread. Sketches on work planes, solid primitives, booleans, fillets and chamfers, face pull and scale, mirroring, and **STEP import as editable solids**. Because it is B-rep and not a mesh, a face can be pulled and its dimension typed to an exact value instead of dragged until it looks about right.
+
+[<img src="assets/images/el-modeler.webp" alt="A B-rep solid being edited in the browser modeller, with live dimensions on the move being typed to an exact value." style="width:100%;">](https://energyflowx.com/elements/knowledge/modeler)
+
+*The in-browser B-rep modeller, running an OCCT kernel in a worker thread. Solids, booleans and sketch geometry are true B-rep, so a dimension is typed rather than dragged.*
+
+### Validation you can check yourself
+
+A dedicated **Validation** tab proves the analysis tools rather than asking you to trust them. The Solar module is validated three ways, each recomputed live in your browser on every visit: the sun position against NREL SPA published values and an independent ephemeris, the occlusion against a closed-form analytic shadow, and the end-to-end sun hours cross-checked against Ladybug Tools, a recognised open-source solar library, on a controlled scene. The clear-sky irradiation is cross-checked against PVGIS. We are not trying to copy any one program, we implement the same accepted physics independently and show that the answers land in the same place.
+
+The full reproduction, the scene file, the read points as a CSV, the reference scripts, the dependencies, and step-by-step instructions, is published in this repository under [validation-evidence](validation-evidence). Clone it and run it yourself.
+
+---
+
+## 8. THE MCP SERVER, EFX INSIDE YOUR AI ASSISTANT
+
+`NEW` EnergyFlowX exposes a curated, read-only slice of its engine over the **Model Context Protocol**, so an LLM assistant (Claude Code, Claude Desktop, Cursor, VS Code, or any MCP client) can call the same validated physics you get in the browser, **with the method and the validity range attached to every number**. It is the antidote to asking a chatbot for a fluid property and being handed a confident guess.
+
+The server speaks streamable HTTP at `https://energyflowx.com/energy-flow-x/mcp`, and the [`/mcp-server`](https://energyflowx.com/mcp-server) page carries the exact configuration snippet for each client, with API-key management in your account settings.
+
+| Tool | What it answers |
+|---|---|
+| `get_fluid_properties` | Properties at a state for nearly every supported fluid, including humid air (from RH, humidity ratio, wet bulb or dew point) and steam (from any two of p, T, h, s, x). |
+| `get_natural_gas_properties` | GERG-2008 properties plus ISO 6976 calorific value and Wobbe index, from a preset or an explicit composition. |
+| `list_fluids` | The catalogue: every fluid, the state inputs it accepts, its validity range, its method, and its access tier. |
+| `get_saturation_properties` | Saturation of a pure fluid, boiling temperature at a pressure or the reverse, phase densities, latent heat, critical and triple points. |
+| `get_solid_properties` | Ice properties. |
+| `convert_units` | Unit conversion, plus a discovery call listing which symbols a quantity accepts. |
+| `search_conduit_catalog` | Standard pipes and ducts by code or manufacturer: shape, wall roughness, available nominal sizes. |
+| `size_conduit` | Sizes one pipe or duct: velocity, pressure drop, Reynolds number, friction factor, flow regime. |
+
+Every tool is **read-only, idempotent and closed-world**, and advertises itself as such, so a client does not stop to ask permission for a lookup. Inputs carry their own units as strings (`"20oC"`, `"1.5bar"`, `"70degF"`, `"8g/kg"`), and each response key names the unit it actually produced, so what you received is visible in the payload rather than inferred. A parameter sweep is one call with a list of states rather than a loop. The same access policy that gates the website gates the tools: most fluids are open, the refrigerants and brines want a free account.
+
+---
+
+## 9. PROPERTY TABLES AND DATA TOOLS
 
 Sometimes you do not want a single point, you want a table. The property-table generator turns any supported fluid into tabulated data over a varying parameter, with fixed parameters held constant, a configurable start, end, and step, selectable significant digits, and a column picker so you only export what you need.
 
 [<img src="assets/images/table-generation-feature.png" alt="Property table generation" style="width:100%;">](https://energyflowx.com)
 
-Results render in the browser and export straight to CSV, ready for a spreadsheet, a report, or a regression test of your own.
+Results render in the browser and export straight to CSV, ready for a spreadsheet, a report, or a regression test of your own. Bulk table export asks for a free account, because a table generator is the surface a scraper would reach for first.
 
 ---
 
-## 8. KNOWLEDGE, THE DOCUMENTATION ENGINEERS ACTUALLY READ
+## 10. KNOWLEDGE, THE DOCUMENTATION ENGINEERS ACTUALLY READ
 
 Every calculator ships with a dedicated **Knowledge** page. Not a tooltip, a real documentation article: the physical model used, how to drive the calculator, identity and safety data, validity ranges, blends and glide behaviour, applications, and a fully cited standards-and-sources panel.
 
@@ -297,9 +428,11 @@ Every calculator ships with a dedicated **Knowledge** page. Not a tooltip, a rea
 
 The intent is simple. You should be able to defend the number you produced, because the tool tells you exactly which standard it came from and where that standard stops being valid.
 
+The whole set is indexed at [`/knowledge`](https://energyflowx.com/knowledge), which now spans the fluid groups, the HVAC processes, the sizing calculators, and the thirteen-page BIM cluster described above. Every article carries its own cited sources panel, and the numbers quoted in the prose are checked against the engine rather than typed from memory.
+
 ---
 
-## 9. UNITS AND FLEXIBILITY
+## 11. UNITS AND FLEXIBILITY
 
 EnergyFlowX speaks both **SI and Imperial**, fluently, with consistent dimensional handling under the hood. Inputs are entered as a value with a unit, validated live, and converted on the fly. Outputs can be overridden per quantity, so pressure in kPa, temperature in K, and flow in m³/min can all coexist on the same screen if that is how your project specifies them.
 
@@ -307,7 +440,7 @@ The whole interface is deliberately **lightweight and fast**. The classic applic
 
 ---
 
-## 10. DESIGNED FOR MOBILE, FRIENDLY FOR WIDE
+## 12. DESIGNED FOR MOBILE, FRIENDLY FOR WIDE
 
 Plenty of engineering tools claim to be responsive, then collapse the moment you open them on a phone. EnergyFlowX was **designed, prepared, and tested for a wide variety of mobile devices**, right down to narrow-screen phones, because real engineers check numbers on site, in a plant room, on a train, not only at a desk. The very same layout stretches gracefully the other way too, looking sharp and spacious on wide desktop monitors.
 
@@ -319,7 +452,27 @@ The result is a tool you can actually trust in your hand, with the same physics 
 
 ---
 
-## 11. THE ENGINE ROOM, DEDICATED LIBRARIES
+## 13. HYDRONIC, WHAT IS BEING BUILT NEXT
+
+Everything above computes a state, a process, or a single conduit. **Hydronic** is the application that computes a whole *network*, and it is the one the rest of the platform has been building toward.
+
+[<img src="assets/images/hydronic-builder.webp" alt="The Hydronic design builder: a piping network drawn on a canvas with equipment blocks, control cables and a results table." style="width:100%;">](https://energyflowx.com/hydronic)
+
+Draw the system, pick the fluid, place sources, demands, vessels, pumps and valves, attach control logic, and solve it. Not a branched tree cut down to something a spreadsheet can handle, but **any topology**, rings and interconnected loops included, with as many sources and demand points as the system actually has, solved numerically with no hand-balancing and no guesswork.
+
+Three things make it different from a sizing tool with a diagram on top:
+
+- **Every utility in one model.** A compressed-air plant whose compressor is water-cooled, with that heat recovered to preheat service water, is normally two or three tools stitched together by hand. Here the systems share one model, air, water, and the heat moving between them.
+- **The fluid you actually run.** Glycol at the concentration you really use rather than the nearest table entry. Natural gas of a custom composition. Superheated single-phase steam from reference-grade formulations. The properties come from the same engine as the rest of the suite.
+- **Static, or watch it move.** Steady state when that is enough, and transient analysis with a configurable time step and device-activation criteria when it is not, with probes placed anywhere on the network reading exactly what you want to know.
+
+The module rollout starts with **compressed air**, then water networks, heating circuits, HVAC rooms and zones, and steam distribution. The solver underneath, `flow-symphony`, is already built and already runs the multi-fluid, thermally coupled cases described in the engine-room section below.
+
+Hydronic is **not released yet**. The preview page at [energyflowx.com/hydronic](https://energyflowx.com/hydronic) explains the scope, the discipline coverage and the licensing intent, and takes waitlist signups for the Founders' Circle. If you design networks for a living, that page is also where to tell me what you actually need, while it is still cheap to change.
+
+---
+
+## 14. THE ENGINE ROOM, DEDICATED LIBRARIES
 
 EnergyFlowX is not a thin wrapper around someone else's solver. It runs on a purpose-built family of engineering libraries, each one designed, written, and tested from scratch for this exact job.
 
@@ -327,19 +480,25 @@ EnergyFlowX is not a thin wrapper around someone else's solver. It runs on a pur
 |---|---|---|
 | **[Unitility](https://github.com/pjazdzyk/unitility)** | Physical quantities and units-of-measure framework. Typed `Temperature`, `Pressure`, `MassFlow`, and friends, with safe conversion across the whole suite. | **Open source, free for everyone** |
 | **numenor-math** | The numerical foundation. Robust root-finders (modified Brent-Dekker, Newton-Raphson, multivariate Newton), line search, fixed-point iteration, and sparse linear algebra. | Private |
-| **flow-symphony** | A universal, domain-generic steady-state hydraulic and pipe-network solver. Solves arbitrary topologies for incompressible and compressible fluids using a Global Gradient Algorithm. | Private |
-| **hvac-engine-pro** | Psychrometrics and IAPWS thermophysics. The humid-air, water, steam, ice, and HVAC-process physics behind the platform. | Private |
+| **eos-engine** | The fluid domain. A general multiparameter Helmholtz equation-of-state kernel with a stable-root density solver and multi-fluid VLE, plus one self-contained pack per fluid family: air, water and steam, industrial gases, cryogens, refrigerants, natural gas, coolants and ice. | Private |
+| **flow-symphony** | A universal, domain-generic steady-state hydraulic and pipe-network solver. Solves arbitrary topologies for incompressible and compressible fluids using a Global Gradient Algorithm, with a solved energy equation carrying temperature through the network. | Private |
+| **hvac-engine-pro** | The HVAC process engine over that fluid domain. Heating, dry and wet cooling with condensate, mixing, heat recovery, and the device layer that plugs fluids into the hydraulic solver. | Private |
+| **solar-engine** | Terrestrial solar and photovoltaic physics. Clear-sky irradiance, plane-of-array transposition, cell temperature, the self-shading orientation optimiser, degradation and finance. | Private |
 
 [![Unitility](https://img.shields.io/badge/UNITILITY-open_source-13ADF3?style=for-the-badge)](https://github.com/pjazdzyk/unitility) &nbsp;
 ![numenor-math](https://img.shields.io/badge/numenor--math-private-2A3A5C?style=for-the-badge) &nbsp;
+![eos-engine](https://img.shields.io/badge/eos--engine-private-2A3A5C?style=for-the-badge) &nbsp;
 ![flow-symphony](https://img.shields.io/badge/flow--symphony-private-2A3A5C?style=for-the-badge) &nbsp;
-![hvac-engine-pro](https://img.shields.io/badge/hvac--engine--pro-private-2A3A5C?style=for-the-badge)
+![hvac-engine-pro](https://img.shields.io/badge/hvac--engine--pro-private-2A3A5C?style=for-the-badge) &nbsp;
+![solar-engine](https://img.shields.io/badge/solar--engine-private-2A3A5C?style=for-the-badge)
 
-**Unitility** is the one member of the family released to the world as open source, free to use in your own projects. The other three are private and power EnergyFlowX from the inside. Together they represent over 7 years of active development and well over 10,000 hours of work on the backbone physics, so that the platform you use stands on equations rather than estimates.
+**Unitility** is the one member of the family released to the world as open source, free to use in your own projects. The rest are private and power EnergyFlowX from the inside. Together they represent over 7 years of active development and well over 10,000 hours of work on the backbone physics, so that the platform you use stands on equations rather than estimates.
+
+Every one of them is plain Java 21 with no framework dependency, which is deliberate. The physics has to be extractable, embeddable, and testable without a container around it.
 
 ---
 
-## 12. ENGINEERING PRACTICES AND NUMERICAL METHODS
+## 15. ENGINEERING PRACTICES AND NUMERICAL METHODS
 
 Under the hood the platform is a study in doing the boring things correctly.
 
@@ -351,7 +510,7 @@ Under the hood the platform is a study in doing the boring things correctly.
 
 ---
 
-## 13. ARCHITECTURE AND TECHNOLOGY
+## 16. ARCHITECTURE AND TECHNOLOGY
 
 EnergyFlowX runs as a set of independent services with a clean separation of concerns: a user and account service, a calculation service that holds all the physics, and a reverse proxy that serves the frontend.
 
@@ -385,7 +544,7 @@ The calculation backend follows a **hexagonal (ports-and-adapters)** architectur
 
 ---
 
-## 14. SECURITY AND PRIVACY
+## 17. SECURITY AND PRIVACY
 
 Security follows industry best practice rather than industry folklore.
 
@@ -398,24 +557,26 @@ Security follows industry best practice rather than industry folklore.
 
 ---
 
-## 15. ACCESS TIERS
+## 18. ACCESS TIERS
 
 Most of EnergyFlowX is free to use right now. A subset of the more advanced applications is marked **Member**, which means an active account is required, often for the current testing phase. Which tools are free and which are gated may shift over time as the platform matures.
 
-- **Free** today includes humid and dry air, water and steam, natural gas, the process gases, glycols, ice, duct sizing, the IFC Lens, and the validation reports.
-- **Member** today includes the refrigerant group, the brine group, pipe sizing, and the HVAC process calculators (heating, cooling, mixing, heat recovery).
+- **Free** today includes humid and dry air, water and steam, natural gas, the process gases, the cryogens, the glycols, ice, all four HVAC process calculators, duct and pipe sizing, IFC Lens in full, entry to Elements with its sun, shadow, wind, vegetation and modelling tools, the MCP server for most fluids, the knowledge base, and the validation reports.
+- **Member** today includes the refrigerant group, the brine group, bulk property-table export, and the two members-only pieces of Elements: the measured-weather download and the photovoltaic yield model.
+
+Access has moved in the free direction since the last revision of this document. The HVAC process calculators and pipe sizing were gated and are now open to everyone.
 
 Register a free account on [energyflowx.com](https://energyflowx.com) and explore.
 
 ---
 
-## 16. THE NUMBERS ARE COMPUTED, NOT GENERATED
+## 19. THE NUMBERS ARE COMPUTED, NOT GENERATED
 
 Every result you see comes from a deterministic algorithm evaluating an established scientific equation, not from a language model predicting a plausible-looking value. There are no LLMs in the calculation path. When a number underpins a building, a coil, or a pipe run, you want a documented equation of state solved to a tolerance, reproducible to the last digit and traceable to its source. That is exactly what the engine delivers, the same inputs always yield the same numbers, and each one can be tied back to the standard it came from.
 
 ---
 
-## 17. LICENSING, CITATION, AND ATTRIBUTION
+## 20. LICENSING, CITATION, AND ATTRIBUTION
 
 EnergyFlowX, its source code, user interface, data formulations, and underlying methods are the exclusive intellectual property of Synerset and are protected by copyright and applicable law.
 
@@ -442,7 +603,7 @@ Piotr Jażdżyk (2026). EnergyFlowX [Computer software]. Synerset. Retrieved fro
 
 ---
 
-## 18. FEEDBACK AND BUG REPORTING
+## 21. FEEDBACK AND BUG REPORTING
 
 This project was built by an engineer, for engineers, and it should be as useful as possible in your daily work. Feedback and ideas are genuinely welcome.
 
@@ -458,17 +619,19 @@ Your feedback is the fuel that drives this project forward. Every suggestion and
 
 ---
 
-## 19. ACKNOWLEDGMENTS
+## 22. ACKNOWLEDGMENTS
 
 Heartfelt thanks to [Mabas83](https://github.com/mabas83) for everything. Deep gratitude to the [Silesian University of Technology](https://www.polsl.pl/en/) for the knowledge, the scientific guidance, and for shaping me into an engineer. Special thanks to [GreedyJ4ck](https://github.com/greedyj4ck) for discussions and valuable suggestions during frontend development. Big thanks to all of you.
 
 This software is based, in part, on information obtained from the International Association for the Properties of Water and Steam ([iapws.org](https://iapws.org)). EN and ISO formulations were consulted under lawful, read-only access to Polish Standards (PN, including the PN-EN and PN-EN ISO adoptions) provided to members of the Polish Chamber of Civil Engineers ([piib.org.pl](https://www.piib.org.pl/)). EnergyFlowX implements those methods in the author's own independent code and does not reproduce, redistribute, or republish the text, tables, or other protected content of any standard. Any numerical agreement with published data reflects correct physics rather than copied content. Standards are named only for reference (nominative use).
 
-**Third-party open-source software.** The browser-based IFC Lens is built on the open-source [That Open Engine](https://github.com/ThatOpen/) BIM toolkit by That Open Company (MIT), the WebAssembly [web-ifc](https://github.com/ThatOpen/engine_web-ifc) parser (MPL-2.0), and **Three.js** (MIT). The **IFC standard** is maintained by [buildingSMART International](https://www.buildingsmart.org/). The bundled demonstration model is the **PCERT Sample Scene** (IFC 4.0.2.1), © buildingSMART International, redistributed unmodified under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+**Third-party open-source software.** The browser-based IFC Lens and Elements are built on the open-source [That Open Engine](https://github.com/ThatOpen/) BIM toolkit by That Open Company (MIT), the WebAssembly [web-ifc](https://github.com/ThatOpen/engine_web-ifc) parser (MPL-2.0), and **Three.js** (MIT). The Elements Modeler runs **Open CASCADE Technology**, the B-rep CAD kernel, compiled to WebAssembly and conveyed to the browser under LGPL-2.1 with the OCCT exception, by way of replicad-opencascadejs and opencascade.js (MIT build tooling).
+
+The **IFC, IDS and BCF standards** are maintained by [buildingSMART International](https://www.buildingsmart.org/) (BCF used under CC BY-ND 4.0). The bundled demonstration model is the **PCERT Sample Scene** (IFC 4.0.2.1), © buildingSMART International, redistributed unmodified under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Site context, basemap tiles and surrounding buildings come from **OpenStreetMap**, © OpenStreetMap contributors, licensed [ODbL](https://opendatacommons.org/licenses/odbl/). Measured typical-meteorological-year weather comes from **PVGIS**, European Commission Joint Research Centre, open data. The solar cross-check is run against **Ladybug Tools**, an open-source solar library, gratefully acknowledged.
 
 ---
 
-## 20. REFERENCE SOURCES
+## 23. REFERENCE SOURCES
 
 The list below is a selection of the most important sources, not the whole library. The full bibliography behind EnergyFlowX runs to dozens more standards, papers, and textbooks. Each calculator's documentation page states the exact standard and validity range it uses.
 
@@ -509,26 +672,57 @@ The list below is a selection of the most important sources, not the whole libra
 ### Process Gases
 
 - **[17]** Span R., Wagner W. (1996), *A New Equation of State for Carbon Dioxide Covering the Fluid Region to 1100 K and 800 MPa*. J. Phys. Chem. Ref. Data, Vol. 25(6), 1509 to 1596. One of the single-component reference models behind the Process Gases group.
+- **[18]** Lemmon E.W., Span R. (2006), *Short Fundamental Equations of State for 20 Industrial Fluids*. J. Chem. Eng. Data, Vol. 51(3), 785 to 850. The equation of state used for nitrous oxide.
+- **[19]** Huber M.L. (2018), *Models for Viscosity, Thermal Conductivity, and Surface Tension of Selected Pure Fluids*. NIST Internal Report 8209. The extended-corresponding-states transport model behind the nitrous-oxide viscosity and thermal conductivity.
+
+### Cryogens
+
+- **[20]** Span R., Lemmon E.W., Jacobsen R.T., Wagner W., Yokozeki A. (2000), *A Reference Equation of State for the Thermodynamic Properties of Nitrogen for Temperatures from 63.151 to 1000 K and Pressures to 2200 MPa*. J. Phys. Chem. Ref. Data, Vol. 29(6), 1361 to 1433.
+- **[21]** Schmidt R., Wagner W. (1985), *A New Form of the Equation of State for Pure Substances and its Application to Oxygen*. Fluid Phase Equilibria, Vol. 19(3), 175 to 200. Companion property tables in Stewart, Jacobsen and Wagner (1991), J. Phys. Chem. Ref. Data, Vol. 20(5), 917 to 1021.
+- **[22]** Tegeler Ch., Span R., Wagner W. (1999), *A New Equation of State for Argon Covering the Fluid Region for Temperatures from the Melting Line to 700 K at Pressures up to 1000 MPa*. J. Phys. Chem. Ref. Data, Vol. 28(3), 779 to 850.
+- **[23]** Ortiz-Vega D.O., Hall K.R., Holste J.C., Arp V.D., Harvey A.H., Lemmon E.W. (2023), *An Equation of State for the Thermodynamic Properties of Helium*. NIST Internal Report 8474. Normal-fluid helium I only, above the lambda point.
+- **[24]** Setzmann U., Wagner W. (1991), *A New Equation of State and Tables of Thermodynamic Properties for Methane Covering the Range from the Melting Line to 625 K at Pressures up to 1000 MPa*. J. Phys. Chem. Ref. Data, Vol. 20(6), 1061 to 1155.
 
 ### Refrigerants
 
-- **[18]** Tillner-Roth R., Baehr H.D. (1994), *An International Standard Formulation for the Thermodynamic Properties of R-134a*. J. Phys. Chem. Ref. Data, Vol. 23(5), 657 to 729. The foundational model of the Refrigerants group, alongside the pure-fluid and multi-fluid Helmholtz models for the remaining members and blends.
+- **[25]** Tillner-Roth R., Baehr H.D. (1994), *An International Standard Formulation for the Thermodynamic Properties of R-134a*. J. Phys. Chem. Ref. Data, Vol. 23(5), 657 to 729. The foundational model of the Refrigerants group, alongside the pure-fluid and multi-fluid Helmholtz models for the remaining members and blends.
 
 ### Secondary Working Fluids, glycols and brines
 
-- **[19]** Melinder Å. (2010), *Properties of Secondary Working Fluids for Indirect Systems*, IIR, 2nd ed. The basis for the Glycols and Brines calculators, including concentration-dependent freezing-point limits.
+- **[26]** Melinder Å. (2010), *Properties of Secondary Working Fluids for Indirect Systems*, IIR, 2nd ed. The basis for the Glycols and Brines calculators, including concentration-dependent freezing-point limits.
 
 ### HVAC Processes and Heat Recovery
 
-- **[20]** Jones W.P. (2001), *Air Conditioning Engineering*, 5th edition. Psychrometric processes, cooling-coil analysis (bypass and contact factors, condensate energy balance), heating, and adiabatic mixing of moist-air streams.
-- **[21]** EN 308:2022, *Heat exchangers, test procedures for establishing the performance of air-to-air heat recovery components*. HRC categories, test types, and the temperature/humidity effectiveness and heat-balance correction formulas.
-- **[22]** EN 13053:2019, *Ventilation for buildings, air handling units, rating and performance for units, components and sections*.
-- **[23]** Kostowski E. (2000), *Przepływ ciepła*, Wydawnictwo Politechniki Śląskiej, Gliwice. The ε-NTU method, flow-arrangement correlations, and capacity-rate (C*) effects used in the heat-recovery asymmetry correction.
+- **[27]** Jones W.P. (2001), *Air Conditioning Engineering*, 5th edition. Psychrometric processes, cooling-coil analysis (bypass and contact factors, condensate energy balance), heating, and adiabatic mixing of moist-air streams.
+- **[28]** EN 308:2022, *Heat exchangers, test procedures for establishing the performance of air-to-air heat recovery components*. HRC categories, test types, and the temperature/humidity effectiveness and heat-balance correction formulas.
+- **[29]** EN 13053:2019, *Ventilation for buildings, air handling units, rating and performance for units, components and sections*.
+- **[30]** Kostowski E. (2000), *Przepływ ciepła*, Wydawnictwo Politechniki Śląskiej, Gliwice. The ε-NTU method, flow-arrangement correlations, and capacity-rate (C*) effects used in the heat-recovery asymmetry correction.
 
 ### Hydraulics, duct and pipe flow
 
-- **[24]** Zeghadnia L., Robert J.L., Achour B. (2019), *Explicit solutions for turbulent flow friction factor: a review, assessment and approaches classification*. Ain Shams Engineering Journal, Vol. 10(1), 243 to 252. Includes the Vatankhah explicit approximation used as the iterative solver initial guess.
-- **[25]** Mitosek M. (2001), *Mechanika płynów w inżynierii i ochronie środowiska*, PWN. Reynolds number, Darcy-Weisbach pressure loss, local losses, linear resistance, and hydraulic diameter.
+- **[31]** Zeghadnia L., Robert J.L., Achour B. (2019), *Explicit solutions for turbulent flow friction factor: a review, assessment and approaches classification*. Ain Shams Engineering Journal, Vol. 10(1), 243 to 252. Includes the Vatankhah explicit approximation used as the iterative solver initial guess.
+- **[32]** Mitosek M. (2001), *Mechanika płynów w inżynierii i ochronie środowiska*, PWN. Reynolds number, Darcy-Weisbach pressure loss, local losses, linear resistance, and hydraulic diameter.
+
+### Solar irradiance and photovoltaics
+
+- **[33]** Bird R.E., Hulstrom R.L. (1981), *A Simplified Clear Sky Model for Direct and Diffuse Insolation on Horizontal Surfaces*. SERI/TR-642-761. The broadband clear-sky model behind an irradiance study that needs no weather file.
+- **[34]** Perez R., Ineichen P., Seals R., Michalsky J., Stewart R. (1990), *Modeling Daylight Availability and Irradiance Components from Direct and Global Irradiance*. Solar Energy, Vol. 44(5), 271 to 289. The anisotropic sky model used for plane-of-array transposition.
+- **[35]** Liu B.Y.H., Jordan R.C. (1960), *The Interrelationship and Characteristic Distribution of Direct, Diffuse and Total Solar Radiation*. Solar Energy, Vol. 4(3), 1 to 19. The isotropic transposition alternative.
+- **[36]** Kasten F., Young A.T. (1989), *Revised Optical Air Mass Tables and Approximation Formula*. Applied Optics, Vol. 28(22), 4735 to 4738.
+- **[37]** Duffie J.A., Beckman W.A., *Solar Engineering of Thermal Processes*. Cover-glass optics and the incidence-angle modifier.
+- **[38]** IEC 61215 and IEC 61724-1. The NOCT definition, and the normalised photovoltaic yield quantities (performance ratio, specific yield) the PV results are reported in.
+- **[39]** Dobos A.P. (2014), *PVWatts Version 5 Manual*. NREL/TP-6A20-62641. The system loss budget.
+- **[40]** PVGIS, European Commission Joint Research Centre. The measured typical-meteorological-year source, and an independent yield cross-check.
+
+### Wind screening
+
+- **[41]** EN 1991-1-4, *Eurocode 1: Actions on structures, Part 1-4: General actions, wind actions*. Referenced for its terrain categories, which drive the inlet profile option.
+- **[42]** Richards P.J., Hoxey R.P. (1993), *Appropriate boundary conditions for computational wind engineering models using the k-ε turbulence model*. J. Wind Eng. Ind. Aerodyn., Vol. 46-47, 145 to 153. The equilibrium atmospheric-boundary-layer requirement the inlet is checked against.
+- **[43]** Roshko A. (1954), *On the Development of Turbulent Wakes from Vortex Streets*. NACA Report 1191. The vortex-shedding benchmark the wind solver is validated on.
+
+### Geometry and CAD
+
+- **[44]** Open CASCADE Technology, the B-rep CAD kernel behind the Elements Modeler, compiled to WebAssembly and used under LGPL-2.1 with the OCCT exception, via replicad-opencascadejs and opencascade.js.
 
 ---
 
