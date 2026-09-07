@@ -28,6 +28,11 @@ We validate it on three independent legs, each against a recognized method or so
 3. **End to end sun hours.** The two legs combined, counting lit time samples over the day.
    This is the comparison documented in this folder, against Ladybug Tools.
 
+The Solar tool can also report an optional **Irradiation** figure in kWh/m², a clear sky potential
+from a weather free model. That is a different claim with a different reference, so it has its own
+case: [clear_sky_irradiation](clear_sky_irradiation/), cross checked against PVGIS (EU JRC). This
+folder is about the geometry.
+
 Ladybug Tools is an open source, widely used and respected solar analysis library in the AEC
 community. Its sun engine is built on NREL Sunpath. Comparing against it is a cross check
 between two genuinely independent implementations of the same accepted physics. We are not
@@ -74,30 +79,58 @@ The same seven points are in `scene/solar-test-points.csv`, ready to paste into 
 
 ## 3. Result
 
-Both tools at a 5 minute step on 20 March in Warsaw. Daylight total 12.08 h on both sides.
+Both tools at a 5 minute step on 20 March in Warsaw. Daylight total 145 samples (12.083 h) on both
+sides.
 
-| Point | Position (x, y, z) m | IFC Lens (h) | Ladybug (h) | Difference (h) |
+Sun hours can only ever be a whole number of time steps, so the table is given in **samples** as
+well as hours. That is not pedantry: it is the difference between a residual you can explain and one
+you cannot. Rounding the hours to two decimals (as the first version of this table did) introduces
+0.0033 h of transcription error, which is 4 % of a one sample tolerance, and on the one point that
+genuinely differs it pushed an otherwise correct comparison over the line.
+
+| Point | Position (x, y, z) m | IFC Lens | Ladybug | Difference |
 | --- | --- | --- | --- | --- |
-| G | (0, 6, 0) | 1.08 | 1.08 | 0.00 |
-| A | (0, 8, 0) | 2.83 | 2.92 | -0.09 |
-| B | (0, 12, 0) | 5.58 | 5.58 | 0.00 |
-| C | (0, 20, 0) | 8.42 | 8.42 | 0.00 |
-| D | (0, 35, 0) | 12.08 | 12.08 | 0.00 |
-| E | (30, 0, 0) | 10.83 | 10.83 | 0.00 |
-| F | (0, -10, 0) | 12.08 | 12.08 | 0.00 |
+| G | (0, 6, 0) | 13 (1.083 h) | 13 (1.083 h) | 0 |
+| A | (0, 8, 0) | 34 (2.833 h) | 35 (2.917 h) | **1 sample** |
+| B | (0, 12, 0) | 67 (5.583 h) | 67 (5.583 h) | 0 |
+| C | (0, 20, 0) | 101 (8.417 h) | 101 (8.417 h) | 0 |
+| D | (0, 35, 0) | 145 (12.083 h) | 145 (12.083 h) | 0 |
+| E | (30, 0, 0) | 130 (10.833 h) | 130 (10.833 h) | 0 |
+| F | (0, -10, 0) | 145 (12.083 h) | 145 (12.083 h) | 0 |
 
-Six of seven points are identical. The seventh, point A, differs by 0.09 h, which is a single 5
-minute step (one sample is 0.083 h).
+Six of seven points are identical. The seventh, point A, differs by exactly one 5 minute sample.
 
-**Why A and only A.** A sits right on the moving shadow edge. Whether one particular 5 minute
-sample lands on the lit or the shaded side of that edge is decided by the sun position to a
-fraction of a degree. IFC Lens uses the NOAA solar equations, Ladybug uses NREL SPA. They differ
-by about 0.01 degrees, enough to flip A's one boundary sample, and nothing else (the other six
-points are either fully open or deeply shaded, so a few seconds never flips them). The residual
-is therefore the expected sampling and algorithm spread of two valid tools, not an error. A 1
-minute step shrinks it further. EnergyFlowX's own independent ray box calculation also gives A =
-2.83 h, which confirms the IFC Lens number is internally consistent and that the gap is purely
-the two sun position algorithms.
+**Why A and only A.** A sits right on the moving shadow edge. Whether one particular 5 minute sample
+lands on the lit or the shaded side of that edge is decided by the sun position to a fraction of a
+degree. IFC Lens uses the NOAA solar equations, Ladybug uses NREL SPA. They differ by about 0.01
+degrees, enough to flip A's one boundary sample, and nothing else: the other six points are either
+fully open or deeply shaded, so a few seconds never flips them. One sample is therefore the finest
+agreement two independent solar position algorithms can be expected to reach at a shadow edge, and
+it is the tolerance the automated check uses. A 1 minute step shrinks the residual further.
+
+### Re-verified, and now automated
+
+This comparison was originally produced by hand in June 2026. It was **re-run on 2026-09-07**, after
+three months of engine work including a full audit that touched the solar and occluder paths, and
+every one of the seven points was unchanged.
+
+**Both sides were re-run, not just ours.** The Ladybug column was regenerated on 2026-09-07 with
+`ladybug-core` 0.44.52 on Python 3.13.7 and reproduced `scene/ladybug-reference.csv` exactly, row
+for row. A reference nobody re-runs is a number, not a reference: it can be a transcription error, a
+figure from a version of the library that no longer behaves that way, or simply wrong, and the
+comparison would still look immaculate.
+
+That is a good outcome, and it was an unverified one: nothing recomputed these numbers, so a
+regression would have moved them silently while this page went on showing June's table. It is now a
+**test in the EnergyFlowX test suite** (`src/utils/bim/validation/__tests__/endToEndSunHours.test.js`),
+run on every commit, pinned to the exact sample counts above. Flipping the sun vector's north-south
+sign, for example, fails it immediately.
+
+The same run also cross checks the occlusion step a second way: the ray versus triangle tracer is
+compared against an independent slab method (ray/AABB interval clipping, sharing no code) over a
+grid of 528 ground points across the whole shadow sweep, where exact agreement is required. Seven
+points show the shadow is about the right size in seven places; the grid shows it is the right
+shape.
 
 ### Figures
 
@@ -132,11 +165,46 @@ python scripts/lb_evidence_figure.py    # renders figures/ladybug-direct-sun-hou
 based engine the Grasshopper "Direct Sun Hours" component uses) and a ray versus axis aligned
 box test for the occlusion.
 
-If you prefer the full visual Grasshopper route, the protocol in
-`ladybug-comparison-protocol.md` (in the EnergyFlowX repository) lists the exact component graph.
-Either route gives the same numbers.
+It prints the reference **in samples**, then the same rows in the exact format of
+`scene/ladybug-reference.csv`, so you can diff your run against the committed reference rather
+than read the numbers off by eye:
 
-### B. EnergyFlowX IFC Lens, in your browser
+```bash
+python scripts/ladybug_reference.py | sed -n '/csv form/,$p' | tail -n +2 > mine.csv
+grep -v '^#' scene/ladybug-reference.csv | diff -u - mine.csv    # no output = identical
+```
+
+It also carries a control point 280 m from the box, which must see the whole day. If the box ever
+shades a point it cannot possibly reach, the script stops rather than printing a reference nobody
+should use.
+
+If you prefer the full visual Grasshopper route, the equivalent component graph is: **Sunpath**
+(location from the IFC site, 20 March, whole day, 5 minute step) → **Direct Sun Hours**, with the
+box as the context geometry and the seven points from `scene/solar-test-points.csv` as the analysis
+points. Set the sun vectors from the same Sunpath component, so the sun positions are identical to
+the script's. Either route gives the numbers in the table above.
+
+### B. EnergyFlowX IFC Lens, headless (no browser, no account)
+
+The solar position and the ray occlusion are pure, dependency free kernels, so the whole day
+integrates in milliseconds outside the browser. In a clone of the EnergyFlowX UI repository:
+
+```bash
+npm ci
+node scripts/run-vitest.mjs run src/utils/bim/validation/__tests__/endToEndSunHours.test.js
+```
+
+That test computes the IFC Lens column of the table above from scratch and asserts the exact sample
+counts, so a pass is the reproduction. `src/utils/bim/validation/endToEndSunHours.js` holds the
+scene, the reference and the comparison; `scene/ladybug-reference.csv` here is the same reference in
+machine readable form.
+
+This route checks the physics and the geometry. It does **not** exercise the GPU shadow map the live
+heatmap rasterises with, which needs WebGL: that path is checked in the browser by the Solar tool's
+own engine self test, against the same closed form oracle. Route C below is the one that exercises
+it end to end.
+
+### C. EnergyFlowX IFC Lens, in your browser
 
 1. Open the IFC Lens at <https://energyflowx.com/cae-bim/ifc-lens>.
 2. Load `scene/solar-test-box.ifc`. The location reads from the file automatically.
@@ -146,7 +214,7 @@ Either route gives the same numbers.
    `scene/solar-test-points.csv` (or just `x, y, z` per line). Press **Place and read**.
 5. The table lists the sun hours at each point. They will match the table above.
 
-### C. Rebuild the IFC scene from scratch (optional)
+### D. Rebuild the IFC scene from scratch (optional)
 
 ```bash
 python scripts/generate_box_ifc.py      # writes solar-test-box.ifc
@@ -159,7 +227,7 @@ the site location are nothing more than what is described here.
 
 ## 5. Files in this folder
 
-```
+```text
 solar_module/
   README.md                     this document
   figures/
@@ -168,11 +236,13 @@ solar_module/
   scene/
     solar-test-box.ifc              the test scene (box on flat ground, Warsaw site)
     solar-test-points.csv           the 7 read points, paste ready
+    ladybug-reference.csv           the reference result, machine readable (samples + hours)
   scripts/
     requirements.txt                Python dependencies
     ladybug_reference.py            reference sun hours from the Ladybug library
     lb_evidence_figure.py           renders the Ladybug figure
     generate_box_ifc.py             rebuilds the test IFC
+  clear_sky_irradiation/        a separate case: the optional kWh/m2 metric vs PVGIS
 ```
 
 ---

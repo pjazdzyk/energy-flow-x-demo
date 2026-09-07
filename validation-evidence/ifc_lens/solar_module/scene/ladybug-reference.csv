@@ -1,0 +1,17 @@
+# Ladybug Tools direct sun hours on the test box, the machine-readable reference.
+# Scene: 20x10x15 m box, Warsaw 52.23N 21.01E, 20 March, whole day, 5-minute steps.
+# Produced by scripts/ladybug_reference.py (ladybug-core Sunpath, NREL based), 2026-06-20.
+#
+# RECORDED IN SAMPLES. Sun hours can only be a whole number of time steps, so the sample count is
+# the exact quantity Ladybug computed and the hours are a presentation of it. The hours column is
+# rounded for reading; do not compare against it, compare against samples. Rounding hours to two
+# decimals costs 0.0033 h, which is 4% of a one-sample tolerance.
+point,x_m,y_m,z_m,samples,hours,description
+G,0,6,0,13,1.083,1 m north of the face - deepest shade
+A,0,8,0,35,2.917,3 m north - ON the moving shadow edge - the most sensitive point
+B,0,12,0,67,5.583,7 m north - shaded midday - lit mornings and evenings
+C,0,20,0,101,8.417,15 m north - near the noon shadow tip
+D,0,35,0,145,12.083,30 m north - open sky
+E,30,0,0,130,10.833,25 m east - open most of the day
+F,0,-10,0,145,12.083,south side - fully open
+DAYLIGHT,,,,145,12.083,daylight on the day - both tools

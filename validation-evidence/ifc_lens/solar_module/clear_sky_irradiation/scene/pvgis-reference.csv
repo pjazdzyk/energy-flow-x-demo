@@ -1,0 +1,12 @@
+# PVGIS clear-sky annual global horizontal irradiation, the machine-readable reference.
+# PVGIS v5.2 DRcalc, clear-sky (EU JRC, McClear model), horizontal unobstructed sensor.
+# Produced by scripts/pvgis_reference.mjs. Recorded 2026-06-21, re-fetched and unchanged 2026-09-07.
+#
+# RECORDED, NOT FETCHED AT TEST TIME, on purpose. PVGIS is a live network service; a validation
+# suite that fails when a third party's server is down teaches people to ignore it. The script that
+# produced these figures is beside this file, so the recording can be checked whenever someone
+# wants to, rather than being taken on trust.
+site,lat,lon,elevation_m,annual_clear_sky_ghi_kwh_m2
+Warsaw,52.23,21.01,119,1607.3
+Madrid,40.42,-3.7,667,2080.8
+Rome,41.9,12.5,21,1953.7
