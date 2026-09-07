@@ -1,93 +1,55 @@
 ##############################
-## Java
+## What this repository holds
 ##############################
-.mtj.tmp/
-*.class
-*.jar
-*.war
-*.ear
-*.nar
-*.opencode
-hs_err_pid*
+# Markdown documentation, images, sample JSON payloads, and the Python scripts
+# under validation-evidence/ that regenerate the reference figures.
+#
+# There is no Java, Maven, Gradle, Eclipse or NetBeans here. This file used to
+# carry the boilerplate for all five, plus three separate spellings of the same
+# .idea/ rule, which made it impossible to see what was actually being ignored.
 
 ##############################
-## Maven
+## Python (validation-evidence scripts)
 ##############################
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-pom.xml.bak
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-.mvn/wrapper/maven-wrapper.jar
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
 
 ##############################
-## Gradle
+## IDE and editor
 ##############################
-bin/
-build/
-.gradle
-.gradletasknamecache
-gradle-app.setting
-!gradle-wrapper.jar
-
-##############################
-## IntelliJ
-##############################
-out/
 .idea/
 .idea_modules/
 *.iml
 *.ipr
 *.iws
-
-##############################
-## Eclipse
-##############################
-.settings/
-bin/
-tmp/
-.metadata
-.classpath
-.project
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.loadpath
-.factorypath
-
-##############################
-## NetBeans
-##############################
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-
-##############################
-## Visual Studio Code
-##############################
 .vscode/
-.code-workspace
+*.code-workspace
+*.swp
+*~
 
 ##############################
 ## AI agent tooling
 ##############################
-# Local agent config/skills, not repo content (removed from user-manager for the same reason).
+# Local agent config and skills, not repository content.
 .qwen/
+.opencode/
+.claude/
 
 ##############################
-## OS X
+## OS
 ##############################
 .DS_Store
-/.idea/
-/.idea/
+Thumbs.db
+desktop.ini
+
+##############################
+## Scratch
+##############################
+*.bak
+*.tmp
+out/
