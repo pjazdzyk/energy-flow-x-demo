@@ -1,0 +1,17 @@
+# Python dependencies for reproducing the inter-row shading evidence.
+# Tested with Python 3.13. Install into a throwaway virtual environment:
+#   python -m venv .venv && .venv/Scripts/activate   (Windows)
+#   python -m venv .venv && source .venv/bin/activate  (macOS / Linux)
+#   pip install -r requirements.txt
+#
+# row_shading_oracle.py needs NOTHING. It is standard-library trigonometry on purpose, so the
+# oracle itself can be read and run without trusting a dependency.
+#
+# pvlib       an independent implementation of the same row geometry (Anderson and Jensen 2024),
+#             used by pvlib_crosscheck.py to check our derivation against someone else's.
+# numpy       vectorises the sweep in pvlib_crosscheck.py.
+# matplotlib  renders the evidence figure (evidence_figure.py).
+
+pvlib
+numpy
+matplotlib

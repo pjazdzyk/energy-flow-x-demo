@@ -1,0 +1,44 @@
+{
+  "_comment": [
+    "The array the ray tracer was run on, in full, so the case can be rebuilt rather than believed.",
+    "Frame: +Y is up, +X is east, -Z is north. A panel's azimuth is a compass bearing, 0 = north,",
+    "90 = east, 180 = south. Lengths are metres, angles are degrees.",
+    "",
+    "21 columns x 3 rows. The columns sit edge to edge with no gap, so a row approximates the",
+    "infinitely long row the closed form assumes; the comparison is taken on the CENTRE panel of the",
+    "MIDDLE row, which is the panel furthest from every edge and therefore the one where that",
+    "approximation is best. Three rows rather than two so that the measured panel has a row behind it",
+    "as well as in front, matching an interior row of a real array.",
+    "",
+    "The panel is 1.6 m along the row axis and 1.0 m up the slope. The slope length is what the",
+    "shading fraction is measured against, so keeping it at exactly 1.0 makes the fraction and the",
+    "shaded length the same number and removes one place to make an arithmetic slip."
+  ],
+  "panel": {
+    "width_along_row_axis_m": 1.6,
+    "slope_length_m": 1.0,
+    "thickness_m": 0.04,
+    "thickness_note": "The product builds panels as solid boxes. The closed form assumes zero thickness, and this 4 cm is the single largest reason the two disagree. scene/engine-vs-closed-form.csv also carries a 0.0004 m run, which isolates the sampling error from the thickness."
+  },
+  "layout": {
+    "columns": 21,
+    "rows": 3,
+    "column_spacing_m": 1.6,
+    "row_pitch_m": 2.5,
+    "tilt_deg": 30.0,
+    "azimuth_deg": 180.0,
+    "panel_centre_height_m": 1.5,
+    "measured_panel": "row index 1 (the middle row), column index 10 (the centre column)"
+  },
+  "sun_positions": {
+    "_comment": "Sun directions are set directly rather than derived from a date and a site, so the case has no dependency on an ephemeris and no timezone to get wrong. A direction at elevation a and compass azimuth g is (cos a sin g, sin a, -cos a cos g).",
+    "elevation_deg": [8, 10, 12, 15, 18, 20, 25, 30, 35, 40, 50],
+    "azimuth_deg": [150, 165, 180, 210]
+  },
+  "quality": {
+    "_comment": "Sub-samples per axis across the panel face. The product clamps this to 7; the higher counts are here only to show that the disagreement converges to zero, which is what tells a quadrature error apart from a modelling error.",
+    "product_default": 3,
+    "product_maximum": 7,
+    "convergence_runs": [21, 41, 81]
+  }
+}

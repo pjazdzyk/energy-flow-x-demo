@@ -14,6 +14,7 @@ rather than trust a claim.
 | --- | --- | --- | --- |
 | [ifc_lens](ifc_lens/solar_module) | Solar, geometry | Direct sun hours match Ladybug Tools on a controlled box scene | yes, re-run on every commit |
 | [ifc_lens](ifc_lens/solar_module/clear_sky_irradiation) | Solar, irradiation | Annual clear sky irradiation agrees with PVGIS, an independent clear sky model, and our clarity band brackets it | yes, re-run on every commit |
+| [ifc_lens](ifc_lens/solar_module/row_shading) | PV, shading | Ray-traced inter-row shading converges onto a closed form for the one geometry that has one, and the residual is the panel's own thickness | yes, re-run on every commit |
 
 More modules and tools will be added here as they mature.
 

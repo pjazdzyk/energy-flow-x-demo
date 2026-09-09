@@ -33,6 +33,10 @@ from a weather free model. That is a different claim with a different reference,
 case: [clear_sky_irradiation](clear_sky_irradiation/), cross checked against PVGIS (EU JRC). This
 folder is about the geometry.
 
+The PV tool adds a third claim on top of both: how much of a panel the row in front of it takes
+away, which is what sets how close together rows can stand. That has its own case as well,
+[row_shading](row_shading/), against a closed form for the one arrangement that has one.
+
 Ladybug Tools is an open source, widely used and respected solar analysis library in the AEC
 community. Its sun engine is built on NREL Sunpath. Comparing against it is a cross check
 between two genuinely independent implementations of the same accepted physics. We are not
@@ -243,6 +247,7 @@ solar_module/
     lb_evidence_figure.py           renders the Ladybug figure
     generate_box_ifc.py             rebuilds the test IFC
   clear_sky_irradiation/        a separate case: the optional kWh/m2 metric vs PVGIS
+  row_shading/                  a separate case: ray-traced inter-row shading vs a closed form
 ```
 
 ---
